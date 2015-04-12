@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Michał Zaborowski</title>
+
+    <link rel="stylesheet" href="../stylesheets/styles.css">
+    <link rel="stylesheet" href="../stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Michał Zaborowski</h1>
+        <p></p>
+        <a class="anchor" href="../index.html" aria-hidden="true">Strona Główna</a>
+      </header>
+
+      <section>
+        <h2>Pracownia Problemowa - Projekt Indywidualny</h2>
+
+        <h3>Opis Problemu (The exam-scheduling project)</h3>
+        <p>
+<p>The project concerns allocating (scheduling) examinations into the smallest number of pre-defined time-slots in a way that avoids exam conflicts; i.e. any student would not be required to take exams that are scheduled in the same time slot.<br/>
+Formally, the exam scheduling problem can be described as follows:</p>
+<ul>
+  <li>there are N students</li>
+  <li>there are M exams to schedule into separate time-slots</li>
+  <li>there are S time-slots</li>
+  <li>every student takes “L(k)” exams (“k” denotes a specific student from among all students and “L(k)” denotes a student-specific list of exams)</li>
+</ul>
+<p>
+The problem is to schedule M exams into S time-slots so as to enable all students to take their exams.<br/><br/>
+Note1: If there was no pre-defined number of time-slots the problem could be solved by allocating each exam to a separate time-slot. However, such a solution is not practical as it would imply a very long examination session.<br/><br/>
+Note2: If the number of time-slots is too small the exam-scheduling problem may not have a solution. For example if there was just one time-slot the exam- scheduling problem would not have a solution if there was even one student who took 2 exams.<br/><br/>
+With a number of time-slots that is greater than the minimum required for the solution of the exam-scheduling problem one can strive to refine the allocation of exams to time-slots in a way that creates greatest gaps between exams for individual students. For students sitting two exams s time-slots apart, the approximate costs are ws i.e. w0=16, w1=8, w2=4, w3=2 and w4=1. The overall quality of the exam schedule can be measured as a sum of the costs ws averaged for all students.<br/><br/>
+For example if a student had exams scheduled in time-slots: 1, 2, 4, 8, the cost evaluated for this student’s exam schedule would be 16+8+2=26.<br/><br/>
+Similar evaluation would be done for all students’ exam schedules and averaged over the number of students.<br/><br/>
+The enclosed file sta-f-83-stu.txt provides a list of exams taken by 611 students (exams are labeled between 0001 and 0139).</p>
+
+<p>Project tasks:
+  <ul>
+    <li>Review the literature on exam scheduling</li>
+    <li>Select and justify your approach</li>
+    <li>Implement your selected approach to exam scheduling and test the
+    program on the data provided (assume that there are 14 time slots
+    available)</li>
+    <li>Evaluate the quality of the exam schedule.</li>
+  </ul>
+
+</p>
+        </p>
+      </section>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+  </body>
+</html>
