@@ -1,0 +1,8 @@
+platform :ios, "8.0"
+pod 'MagicalRecord'
+
+target 'ExamSchedulingTests', :exclusive => true do
+    pod 'MagicalRecord'
+end
+
+inhibit_all_warnings!
