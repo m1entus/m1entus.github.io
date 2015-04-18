@@ -8,16 +8,24 @@
 
 #import "ESSchedule.h"
 #import "ESCourse.h"
+#import "ESStudent.h"
+
+CGFloat const ESScheduleVariantWeight= 1.0;
+CGFloat const ESScheduleVariantWeightThreshold = 100.0;
+
+CGFloat const ESSchedulePenaltyCounterSimultaneousExams = CGFLOAT_MAX;
+CGFloat const ESSchedulePenaltyCounterConsecutiveExams = 2.0;
+CGFloat const ESSchedulePenaltyCounterMoreThanTwoPerDayExams = 5.0;
 
 @interface ESSchedule ()
 @property (nonatomic, strong, readwrite) NSNumber *quality;
 @property (nonatomic, strong) NSNumber *totalNumberOfSlots;
 
 // Key is slot number 0 - (totalNumberOfSlots-1), value is Array of coursesIds assigned for slot
-@property (nonatomic, strong) NSMutableDictionary *slots;
+@property (nonatomic, strong) NSDictionary *slots;
 
-// For performance
-@property (nonatomic, strong) NSMutableDictionary *slotForCourseId;
+// Key: courseId, Value: slot - this is for performance
+@property (nonatomic, strong) NSDictionary *slotForCourseId;
 @end
 
 @implementation ESSchedule
@@ -25,11 +33,34 @@
 - (NSNumber *)quality {
     if (!_quality) {
         // Calculate rank
-        NSInteger nuberOfCourses = [ESCourse MR_countOfEntitiesWithContext:self.context];
+        NSInteger numberOfCourses = [ESCourse MR_countOfEntitiesWithContext:self.context];
 
         // Best distribution of schedules is that every slot has the same amount of courses
-        CGFloat bestDistribution = (CGFloat)nuberOfCourses / [self.totalNumberOfSlots floatValue];
-        _quality = @(1.0);
+        CGFloat bestDistribution = (CGFloat)numberOfCourses / [self.totalNumberOfSlots floatValue];
+        __block double variant = 0.0;
+
+
+        [self.slots enumerateKeysAndObjectsUsingBlock:^(NSNumber *slot, NSMutableSet *coursesInSlot, BOOL *stop) {
+            variant += pow((double)(coursesInSlot.count - bestDistribution), 2);
+        }];
+        variant /= (double)self.slots.count;
+
+
+        __block double rank = CGFLOAT_MAX;
+
+        if (variant <= ESScheduleVariantWeightThreshold) {
+            rank = variant * ESScheduleVariantWeight;
+
+            NSArray *students = [ESStudent MR_findAllInContext:self.context];
+            [students enumerateObjectsUsingBlock:^(ESStudent *student, NSUInteger idx, BOOL *stop) {
+                rank += [[student qualityOfSchedule:self] doubleValue];
+                if (rank >= CGFLOAT_MAX) {
+                    *stop = YES;
+                }
+            }];
+        }
+
+        _quality = @(rank);
 
     }
     return _quality;
@@ -48,8 +79,8 @@
 
         _totalNumberOfSlots = numberOfSlots;
         _context = context;
-        _slotForCourseId = [NSMutableDictionary dictionary];
-        _slots = [NSMutableDictionary dictionary];
+        _slotForCourseId = [NSDictionary dictionary];
+        _slots = [NSDictionary dictionary];
     }
 
     return self;
@@ -68,13 +99,19 @@
 }
 
 - (void)prepareSlots {
+    NSMutableDictionary *slots = [self.slots mutableCopy];
     for (NSInteger i = 0; i < [self.totalNumberOfSlots integerValue]; i++) {
-        self.slots[@(i)] = [NSMutableSet set];
+        slots[@(i)] = [NSMutableSet set];
     }
+    self.slots = [slots copy];
+}
+
+- (NSNumber *)slotForCourse:(ESCourse *)course {
+    return self.slotForCourseId[course.courseId];
 }
 
 - (void)removeCourse:(ESCourse *)course fromSlot:(NSNumber *)slot {
-    NSNumber *slotForCurrentCourse = self.slotForCourseId[course.courseId];
+    NSNumber *slotForCurrentCourse = [self slotForCourse:course];
     if (slotForCurrentCourse) {
         NSMutableSet *setOfSlots = self.slots[slotForCurrentCourse];
         [setOfSlots removeObject:course.courseId];
@@ -85,13 +122,15 @@
     NSParameterAssert(slot);
     NSMutableSet *setOfSlots = self.slots[slot];
     [setOfSlots addObject:course.courseId];
-    self.slotForCourseId[course.courseId] = [slot copy];
+
+    NSMutableDictionary *slotForCourseId = [self.slotForCourseId mutableCopy];
+    slotForCourseId[course.courseId] = [slot copy];
+    self.slotForCourseId = [slotForCourseId copy];
 }
 
 - (void)reassignCourse:(ESCourse *)course toSlot:(NSNumber *)slot {
     [self removeCourse:course fromSlot:slot];
     [self insertCourse:course toSlot:slot];
-
 }
 
 #pragma mark - NSCopying

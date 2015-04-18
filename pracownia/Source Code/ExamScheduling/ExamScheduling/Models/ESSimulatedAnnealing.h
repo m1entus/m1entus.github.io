@@ -43,8 +43,6 @@
 + (instancetype)solverForContext:(NSManagedObjectContext *)context;
 - (instancetype)initWithContext:(NSManagedObjectContext *)context;
 
-- (void)cleanUp;
-
 - (ESSchedule *)solve;
 
 - (void)solveWithCompletionHandler:(void(^)(ESSchedule *bestSchedule))completion;

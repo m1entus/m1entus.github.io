@@ -83,4 +83,15 @@ double const E = 2.718281828;
     return self.bestSchedule;
 }
 
+- (void)solveWithCompletionHandler:(void(^)(ESSchedule *bestSchedule))completion {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        ESSchedule *schedule = [self solve];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (completion) {
+                completion(schedule);
+            }
+        });
+    });
+}
+
 @end

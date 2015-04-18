@@ -10,6 +10,10 @@
 
 @class ESCourse;
 
+extern CGFloat const ESSchedulePenaltyCounterSimultaneousExams;
+extern CGFloat const ESSchedulePenaltyCounterConsecutiveExams;
+extern CGFloat const ESSchedulePenaltyCounterMoreThanTwoPerDayExams;
+
 @interface ESSchedule : NSObject <NSCopying>
 @property (nonatomic, strong) NSManagedObjectContext *context;
 
@@ -22,4 +26,6 @@
 - (instancetype)initWithTotalNumberOfSlots:(NSNumber *)numberOfSlots inContext:(NSManagedObjectContext *)context;
 
 - (void)reassignCourse:(ESCourse *)course toSlot:(NSNumber *)slot;
+
+- (NSNumber *)slotForCourse:(ESCourse *)course;
 @end
