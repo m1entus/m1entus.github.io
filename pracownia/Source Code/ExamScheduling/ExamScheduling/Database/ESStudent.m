@@ -9,7 +9,7 @@
 @implementation ESStudent
 
 - (NSNumber *)qualityOfSchedule:(ESSchedule *)schedule {
-    
+    return nil;
 }
 
 + (instancetype)studentWithId:(NSString *)studentId inContext:(NSManagedObjectContext *)context {

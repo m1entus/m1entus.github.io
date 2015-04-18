@@ -8,9 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ESSchedule : NSObject
+@class ESCourse;
+
+@interface ESSchedule : NSObject <NSCopying>
 @property (nonatomic, strong) NSManagedObjectContext *context;
+
+/**
+ *  Quality of schedule based on student ranks
+ */
 @property (nonatomic, readonly) NSNumber *quality;
 
-+ (instancetype)scheduleWithTotalNumberOfSlots:(NSNumber *)numberOfSlots inContext:(NSManagedObjectContext *)context;
++ (instancetype)randomScheduleWithTotalNumberOfSlots:(NSNumber *)numberOfSlots inContext:(NSManagedObjectContext *)context;
+- (instancetype)initWithTotalNumberOfSlots:(NSNumber *)numberOfSlots inContext:(NSManagedObjectContext *)context;
+
+- (void)reassignCourse:(ESCourse *)course toSlot:(NSNumber *)slot;
 @end

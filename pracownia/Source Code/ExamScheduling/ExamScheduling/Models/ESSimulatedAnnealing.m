@@ -7,9 +7,15 @@
 //
 
 #import "ESSimulatedAnnealing.h"
+#import "ESCourse.h"
+
+double const E = 2.718281828;
 
 @interface ESSimulatedAnnealing ()
 @property (nonatomic, readwrite, strong) ESSchedule *bestSchedule;
+@property (nonatomic, strong) NSArray *allSortedCourses;
+
+@property (nonatomic, strong) NSNumber *currentTemperature;
 @end
 
 @implementation ESSimulatedAnnealing
@@ -25,10 +31,56 @@
         _phi = @(0.95);
         _perturb = @(0.1);
         _totalNumberOfSlots = @14;
+        _context = context;
+        _allSortedCourses = [ESCourse MR_findAllSortedBy:@"courseId" ascending:YES inContext:context];
     }
     return self;
 }
 
+- (void)prepareForSolve {
+    self.bestSchedule = [ESSchedule randomScheduleWithTotalNumberOfSlots:self.totalNumberOfSlots inContext:self.context];
+    self.currentTemperature = self.initialTemperature;
+}
 
+- (BOOL)shouldStopSolver {
+    return [self.currentTemperature doubleValue] < [self.freezingTemperature doubleValue];
+}
+
+- (ESSchedule *)solve {
+    [self prepareForSolve];
+
+    NSInteger numberOfIterations = self.allSortedCourses.count * [self.totalNumberOfSlots integerValue];
+
+    while (![self shouldStopSolver]) {
+        @autoreleasepool {
+            ESSchedule *schedule = self.bestSchedule;
+            for (NSInteger i = 0; i < numberOfIterations; i++) {
+                ESSchedule *perturbed = [schedule copy];
+                NSInteger numberOfChangesToMake = arc4random() % (NSInteger)((self.allSortedCourses.count * [self.perturb doubleValue]) + 1);
+                for (NSInteger i = 0; i < numberOfChangesToMake; i++) {
+                    ESCourse *randomCourse = self.allSortedCourses[(NSInteger)arc4random() % self.allSortedCourses.count];
+                    NSInteger randomSlot = arc4random()%[self.totalNumberOfSlots integerValue];
+                    [perturbed reassignCourse:randomCourse toSlot:@(randomSlot)];
+                }
+
+                double qualityDifference = [perturbed.quality doubleValue] - [schedule.quality doubleValue];
+
+                double randomDouble = (double)(arc4random() % ((unsigned)RAND_MAX + 1)) / (double)RAND_MAX;
+                if (qualityDifference < 0) {
+                    schedule = perturbed;
+                } else if ( randomDouble < pow(E, -qualityDifference / [self.currentTemperature doubleValue])) {
+                    schedule = perturbed;
+                }
+
+                if ([schedule.quality doubleValue] < [self.bestSchedule.quality doubleValue]) {
+                    self.bestSchedule = schedule;
+                }
+            }
+            self.currentTemperature = @([self.currentTemperature doubleValue] * [self.phi doubleValue]);
+        }
+    }
+
+    return self.bestSchedule;
+}
 
 @end
