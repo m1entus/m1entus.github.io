@@ -29,12 +29,18 @@ CGFloat const ESSchedulePenaltyCounterMoreThanTwoPerDayExams = 5.0;
 @property (nonatomic, strong) NSMutableArray *slotCounter;
 @end
 
+static NSArray *cachedStudents = nil;
+static NSInteger cachedNumberOfCourses = 0;
+
 @implementation ESSchedule
 
 - (NSNumber *)quality {
     if (!_quality) {
         // Calculate rank
-        NSInteger numberOfCourses = [ESCourse MR_countOfEntitiesWithContext:self.context];
+        if (cachedNumberOfCourses == 0) {
+            cachedNumberOfCourses = [ESCourse MR_countOfEntitiesWithContext:self.context];
+        }
+        NSInteger numberOfCourses = cachedNumberOfCourses;
 
         // Best distribution of schedules is that every slot has the same amount of courses
         CGFloat bestDistribution = (CGFloat)numberOfCourses / [self.totalNumberOfSlots floatValue];
@@ -52,7 +58,10 @@ CGFloat const ESSchedulePenaltyCounterMoreThanTwoPerDayExams = 5.0;
         if (variant <= ESScheduleVariantWeightThreshold) {
             rank = variant * ESScheduleVariantWeight;
 
-            NSArray *students = [ESStudent MR_findAllInContext:self.context];
+            if (!cachedStudents) {
+                cachedStudents =[ESStudent MR_findAllInContext:self.context];
+            }
+            NSArray *students = cachedStudents;
             [students enumerateObjectsUsingBlock:^(ESStudent *student, NSUInteger idx, BOOL *stop) {
                 rank += [[student qualityOfSchedule:self] doubleValue];
                 if (rank >= CGFLOAT_MAX) {
@@ -151,22 +160,11 @@ CGFloat const ESSchedulePenaltyCounterMoreThanTwoPerDayExams = 5.0;
 
 #pragma mark - NSCopying
 
-- (NSInteger)allCouters {
-    __block NSInteger count = 0;
-
-    [self.slotCounter enumerateObjectsUsingBlock:^(NSNumber *obj, NSUInteger idx, BOOL *stop) {
-        count += [obj integerValue];
-    }];
-    return count;
-}
-
 - (id)copyWithZone:(NSZone *)zone {
     ESSchedule *schedule = [[ESSchedule alloc] initWithTotalNumberOfSlots:[self.totalNumberOfSlots copyWithZone:zone] inContext:self.context];
-//    schedule.slots = [self.slots mutableCopyWithZone:zone];
+
     schedule.slotForCourseId = [self.slotForCourseId mutableCopyWithZone:zone];
     schedule.slotCounter = [self.slotCounter mutableCopyWithZone:zone];
-
-//    NSLog(@"%d",[schedule allCouters]);
 
     return schedule;
 }

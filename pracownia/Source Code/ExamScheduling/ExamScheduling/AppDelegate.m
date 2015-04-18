@@ -22,13 +22,15 @@
     [MagicalRecord setupAutoMigratingCoreDataStack];
 
     if ([ESCourse MR_countOfEntities] <= 0) {
-        [ESCoursesFileParser parseFileAtPath:[[NSBundle mainBundle] pathForResource:@"small5-stu" ofType:@"txt"] completionHandler:nil];
+        [ESCoursesFileParser parseFileAtPath:[[NSBundle mainBundle] pathForResource:@"sta-f-83-stu" ofType:@"txt"] completionHandler:nil];
+    } else {
+        ESSimulatedAnnealing *sa = [[ESSimulatedAnnealing alloc] initWithContext:[NSManagedObjectContext MR_defaultContext]];
+        ESSchedule *schedule = [sa solve];
+
+        schedule;
     }
 
-    ESSimulatedAnnealing *sa = [[ESSimulatedAnnealing alloc] initWithContext:[NSManagedObjectContext MR_defaultContext]];
-    ESSchedule *schedule = [sa solve];
 
-    schedule;
     
     // Override point for customization after application launch.
     return YES;
