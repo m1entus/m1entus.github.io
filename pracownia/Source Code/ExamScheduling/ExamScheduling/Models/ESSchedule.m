@@ -46,7 +46,7 @@ CGFloat const ESSchedulePenaltyCounterMoreThanTwoPerDayExams = 5.0;
         variant /= (double)self.slots.count;
 
 
-        __block double rank = CGFLOAT_MAX;
+        __block double rank = 0;
 
         if (variant <= ESScheduleVariantWeightThreshold) {
             rank = variant * ESScheduleVariantWeight;
@@ -58,6 +58,8 @@ CGFloat const ESSchedulePenaltyCounterMoreThanTwoPerDayExams = 5.0;
                     *stop = YES;
                 }
             }];
+        } else {
+            rank = CGFLOAT_MAX;
         }
 
         _quality = @(rank);
@@ -91,7 +93,7 @@ CGFloat const ESSchedulePenaltyCounterMoreThanTwoPerDayExams = 5.0;
 - (void)generateSchedule {
     [self prepareSlots];
 
-    NSArray *results = [ESCourse MR_findAll];
+    NSArray *results = [ESCourse MR_findAllInContext:self.context];
     [results enumerateObjectsUsingBlock:^(ESCourse *obj, NSUInteger idx, BOOL *stop) {
         NSInteger randomSlot = arc4random()%[self.totalNumberOfSlots integerValue];
         [self insertCourse:obj toSlot:@(randomSlot)];
@@ -99,7 +101,7 @@ CGFloat const ESSchedulePenaltyCounterMoreThanTwoPerDayExams = 5.0;
 }
 
 - (void)prepareSlots {
-    NSMutableDictionary *slots = [self.slots mutableCopy];
+    NSMutableDictionary *slots = [NSMutableDictionary dictionaryWithCapacity:[self.totalNumberOfSlots integerValue]];
     for (NSInteger i = 0; i < [self.totalNumberOfSlots integerValue]; i++) {
         slots[@(i)] = [NSMutableSet set];
     }
@@ -112,9 +114,14 @@ CGFloat const ESSchedulePenaltyCounterMoreThanTwoPerDayExams = 5.0;
 
 - (void)removeCourse:(ESCourse *)course fromSlot:(NSNumber *)slot {
     NSNumber *slotForCurrentCourse = [self slotForCourse:course];
+    NSParameterAssert(slotForCurrentCourse);
     if (slotForCurrentCourse) {
         NSMutableSet *setOfSlots = self.slots[slotForCurrentCourse];
         [setOfSlots removeObject:course.courseId];
+
+        NSMutableDictionary *slots = [self.slots mutableCopy];
+        slots[slotForCurrentCourse] = setOfSlots;
+        self.slots = [slots copy];
     }
 }
 
@@ -122,6 +129,10 @@ CGFloat const ESSchedulePenaltyCounterMoreThanTwoPerDayExams = 5.0;
     NSParameterAssert(slot);
     NSMutableSet *setOfSlots = self.slots[slot];
     [setOfSlots addObject:course.courseId];
+
+    NSMutableDictionary *slots = [self.slots mutableCopy];
+    slots[slot] = setOfSlots;
+    self.slots = [slots copy];
 
     NSMutableDictionary *slotForCourseId = [self.slotForCourseId mutableCopy];
     slotForCourseId[course.courseId] = [slot copy];
@@ -137,8 +148,8 @@ CGFloat const ESSchedulePenaltyCounterMoreThanTwoPerDayExams = 5.0;
 
 - (id)copyWithZone:(NSZone *)zone {
     ESSchedule *schedule = [[ESSchedule alloc] initWithTotalNumberOfSlots:[self.totalNumberOfSlots copyWithZone:zone] inContext:self.context];
-    schedule.slots = [self.slots mutableCopyWithZone:zone];
-    schedule.slotForCourseId = [self.slotForCourseId mutableCopyWithZone:zone];
+    schedule.slots = [self.slots copyWithZone:zone];
+    schedule.slotForCourseId = [self.slotForCourseId copyWithZone:zone];
     return schedule;
 }
 

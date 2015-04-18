@@ -27,7 +27,7 @@ double const E = 2.718281828;
 - (instancetype)initWithContext:(NSManagedObjectContext *)context {
     if (self = [super init]) {
         _initialTemperature = @(0.93);
-        _freezingTemperature = @(pow(2, -30));
+        _freezingTemperature = @(pow(2, -3));
         _phi = @(0.95);
         _perturb = @(0.1);
         _totalNumberOfSlots = @14;
