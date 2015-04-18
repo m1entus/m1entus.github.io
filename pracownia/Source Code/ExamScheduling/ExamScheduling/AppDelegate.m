@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "ESCoursesFileParser.h"
 #import "ESCourse.h"
+#import "ESSimulatedAnnealing.h"
 
 @interface AppDelegate ()
 
@@ -23,6 +24,11 @@
     if ([ESCourse MR_countOfEntities] <= 0) {
         [ESCoursesFileParser parseFileAtPath:[[NSBundle mainBundle] pathForResource:@"small5-stu" ofType:@"txt"] completionHandler:nil];
     }
+
+    ESSimulatedAnnealing *sa = [[ESSimulatedAnnealing alloc] initWithContext:[NSManagedObjectContext MR_defaultContext]];
+    ESSchedule *schedule = [sa solve];
+
+    schedule;
     
     // Override point for customization after application launch.
     return YES;

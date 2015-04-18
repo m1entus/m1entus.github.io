@@ -22,10 +22,11 @@ CGFloat const ESSchedulePenaltyCounterMoreThanTwoPerDayExams = 5.0;
 @property (nonatomic, strong) NSNumber *totalNumberOfSlots;
 
 // Key is slot number 0 - (totalNumberOfSlots-1), value is Array of coursesIds assigned for slot
-@property (nonatomic, strong) NSDictionary *slots;
+//@property (nonatomic, strong) NSMutableDictionary *slots;
 
 // Key: courseId, Value: slot - this is for performance
-@property (nonatomic, strong) NSDictionary *slotForCourseId;
+@property (nonatomic, strong) NSMutableDictionary *slotForCourseId;
+@property (nonatomic, strong) NSMutableArray *slotCounter;
 @end
 
 @implementation ESSchedule
@@ -40,10 +41,10 @@ CGFloat const ESSchedulePenaltyCounterMoreThanTwoPerDayExams = 5.0;
         __block double variant = 0.0;
 
 
-        [self.slots enumerateKeysAndObjectsUsingBlock:^(NSNumber *slot, NSMutableSet *coursesInSlot, BOOL *stop) {
-            variant += pow((double)(coursesInSlot.count - bestDistribution), 2);
+        [self.slotCounter enumerateObjectsUsingBlock:^(NSNumber *obj, NSUInteger idx, BOOL *stop) {
+            variant += pow((double)([obj integerValue] - bestDistribution), 2);
         }];
-        variant /= (double)self.slots.count;
+        variant /= (double)self.slotForCourseId.count;
 
 
         __block double rank = 0;
@@ -81,8 +82,12 @@ CGFloat const ESSchedulePenaltyCounterMoreThanTwoPerDayExams = 5.0;
 
         _totalNumberOfSlots = numberOfSlots;
         _context = context;
-        _slotForCourseId = [NSDictionary dictionary];
-        _slots = [NSDictionary dictionary];
+        _slotForCourseId = [NSMutableDictionary dictionary];
+        _slotCounter = [NSMutableArray arrayWithCapacity:[self.totalNumberOfSlots integerValue]];
+        for (NSInteger i = 0; i < [self.totalNumberOfSlots integerValue]; i++) {
+            _slotCounter[i] = @0;
+        }
+//        _slots = [NSMutableDictionary dictionary];
     }
 
     return self;
@@ -98,58 +103,71 @@ CGFloat const ESSchedulePenaltyCounterMoreThanTwoPerDayExams = 5.0;
         NSInteger randomSlot = arc4random()%[self.totalNumberOfSlots integerValue];
         [self insertCourse:obj toSlot:@(randomSlot)];
     }];
+
 }
 
 - (void)prepareSlots {
-    NSMutableDictionary *slots = [NSMutableDictionary dictionaryWithCapacity:[self.totalNumberOfSlots integerValue]];
-    for (NSInteger i = 0; i < [self.totalNumberOfSlots integerValue]; i++) {
-        slots[@(i)] = [NSMutableSet set];
-    }
-    self.slots = [slots copy];
+//    NSMutableDictionary *slots = [NSMutableDictionary dictionaryWithCapacity:[self.totalNumberOfSlots integerValue]];
+//    for (NSInteger i = 0; i < [self.totalNumberOfSlots integerValue]; i++) {
+//        slots[@(i)] = [NSMutableArray array];
+//    }
+//    self.slots = [slots copy];
 }
 
 - (NSNumber *)slotForCourse:(ESCourse *)course {
     return self.slotForCourseId[course.courseId];
 }
 
-- (void)removeCourse:(ESCourse *)course fromSlot:(NSNumber *)slot {
+- (void)removeCourse:(ESCourse *)course {
     NSNumber *slotForCurrentCourse = [self slotForCourse:course];
-    NSParameterAssert(slotForCurrentCourse);
-    if (slotForCurrentCourse) {
-        NSMutableSet *setOfSlots = self.slots[slotForCurrentCourse];
-        [setOfSlots removeObject:course.courseId];
+    NSNumber *slotCount = self.slotCounter[[slotForCurrentCourse integerValue]];
+    slotCount = @([slotCount integerValue]-1);
+    self.slotCounter[[slotForCurrentCourse integerValue]] = slotCount;
 
-        NSMutableDictionary *slots = [self.slots mutableCopy];
-        slots[slotForCurrentCourse] = setOfSlots;
-        self.slots = [slots copy];
-    }
+//    NSMutableArray *setOfSlots = self.slots[slotForCurrentCourse];
+//    [setOfSlots removeObject:course.courseId];
+
+    [self.slotForCourseId removeObjectForKey:course.courseId];
 }
 
 - (void)insertCourse:(ESCourse *)course toSlot:(NSNumber *)slot {
     NSParameterAssert(slot);
-    NSMutableSet *setOfSlots = self.slots[slot];
-    [setOfSlots addObject:course.courseId];
 
-    NSMutableDictionary *slots = [self.slots mutableCopy];
-    slots[slot] = setOfSlots;
-    self.slots = [slots copy];
+//    NSMutableArray *setOfSlots = self.slots[slot];
+//    [setOfSlots addObject:course.courseId];
 
-    NSMutableDictionary *slotForCourseId = [self.slotForCourseId mutableCopy];
-    slotForCourseId[course.courseId] = [slot copy];
-    self.slotForCourseId = [slotForCourseId copy];
+    self.slotForCourseId[course.courseId] = slot;
+
+    NSNumber *slotCount = self.slotCounter[[slot integerValue]];
+    slotCount = @([slotCount integerValue]+1);
+    self.slotCounter[[slot integerValue]] = slotCount;
+
 }
 
 - (void)reassignCourse:(ESCourse *)course toSlot:(NSNumber *)slot {
-    [self removeCourse:course fromSlot:slot];
+    [self removeCourse:course];
     [self insertCourse:course toSlot:slot];
 }
 
 #pragma mark - NSCopying
 
+- (NSInteger)allCouters {
+    __block NSInteger count = 0;
+
+    [self.slotCounter enumerateObjectsUsingBlock:^(NSNumber *obj, NSUInteger idx, BOOL *stop) {
+        count += [obj integerValue];
+    }];
+    return count;
+}
+
 - (id)copyWithZone:(NSZone *)zone {
     ESSchedule *schedule = [[ESSchedule alloc] initWithTotalNumberOfSlots:[self.totalNumberOfSlots copyWithZone:zone] inContext:self.context];
-    schedule.slots = [self.slots copyWithZone:zone];
-    schedule.slotForCourseId = [self.slotForCourseId copyWithZone:zone];
+//    schedule.slots = [self.slots mutableCopyWithZone:zone];
+    schedule.slotForCourseId = [self.slotForCourseId mutableCopyWithZone:zone];
+    schedule.slotCounter = [self.slotCounter mutableCopyWithZone:zone];
+
+//    NSLog(@"%d",[schedule allCouters]);
+
     return schedule;
 }
 
