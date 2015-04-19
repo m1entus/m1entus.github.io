@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		062574BA1AE3B35E00040BE4 /* ESDatabaseDataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 062574B91AE3B35E00040BE4 /* ESDatabaseDataCache.m */; };
+		062574BB1AE3B56300040BE4 /* ESDatabaseDataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 062574B91AE3B35E00040BE4 /* ESDatabaseDataCache.m */; };
+		062574C31AE3C49100040BE4 /* ESGenethicMethodology.m in Sources */ = {isa = PBXBuildFile; fileRef = 062574C21AE3C49100040BE4 /* ESGenethicMethodology.m */; };
+		062574C61AE4035200040BE4 /* NSNumber+Random.m in Sources */ = {isa = PBXBuildFile; fileRef = 062574C51AE4035200040BE4 /* NSNumber+Random.m */; };
 		06570E611ADAD17B00E10AEA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 06570E601ADAD17B00E10AEA /* main.m */; };
 		06570E641ADAD17B00E10AEA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 06570E631ADAD17B00E10AEA /* AppDelegate.m */; };
 		06570E671ADAD17B00E10AEA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06570E661ADAD17B00E10AEA /* ViewController.m */; };
@@ -15,7 +19,7 @@
 		06570E6F1ADAD17B00E10AEA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06570E6D1ADAD17B00E10AEA /* LaunchScreen.xib */; };
 		06570E7B1ADAD17B00E10AEA /* ExamSchedulingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 06570E7A1ADAD17B00E10AEA /* ExamSchedulingTests.m */; };
 		06B4D03F1AE26B6900BA95DF /* ESSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBA6BF1ADAF47A00646B8D /* ESSchedule.m */; };
-		06B4D0401AE27D7800BA95DF /* ESSimulatedAnnealing.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBA6BC1ADAF1EF00646B8D /* ESSimulatedAnnealing.m */; };
+		06B4D0401AE27D7800BA95DF /* ESSimulatedAnnealingMethodology.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBA6BC1ADAF1EF00646B8D /* ESSimulatedAnnealingMethodology.m */; };
 		06FBA6951ADAD33B00646B8D /* small5-stu.txt in Resources */ = {isa = PBXBuildFile; fileRef = 06FBA6931ADAD33B00646B8D /* small5-stu.txt */; };
 		06FBA6961ADAD33B00646B8D /* sta-f-83-stu.txt in Resources */ = {isa = PBXBuildFile; fileRef = 06FBA6941ADAD33B00646B8D /* sta-f-83-stu.txt */; };
 		06FBA69A1ADAD44B00646B8D /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 06FBA6981ADAD44B00646B8D /* Model.xcdatamodeld */; };
@@ -33,7 +37,7 @@
 		06FBA6B71ADADF4900646B8D /* sta-f-83-stu.txt in Resources */ = {isa = PBXBuildFile; fileRef = 06FBA6941ADAD33B00646B8D /* sta-f-83-stu.txt */; };
 		06FBA6B81ADADF5700646B8D /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 06FBA6981ADAD44B00646B8D /* Model.xcdatamodeld */; };
 		06FBA6BA1ADAECA600646B8D /* ESCoursesFileParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBA6B91ADAECA600646B8D /* ESCoursesFileParserTests.m */; };
-		06FBA6BD1ADAF1EF00646B8D /* ESSimulatedAnnealing.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBA6BC1ADAF1EF00646B8D /* ESSimulatedAnnealing.m */; };
+		06FBA6BD1ADAF1EF00646B8D /* ESSimulatedAnnealingMethodology.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBA6BC1ADAF1EF00646B8D /* ESSimulatedAnnealingMethodology.m */; };
 		06FBA6C01ADAF47A00646B8D /* ESSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBA6BF1ADAF47A00646B8D /* ESSchedule.m */; };
 		4ECDDCC9A291E89258C77A01 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 85C2C0B1459FA8F9F1DDA0F5 /* libPods.a */; };
 		5B4CC7AB2BEFC415B2853FCF /* libPods-ExamSchedulingTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D403F4AD8CE6F636A1595B6 /* libPods-ExamSchedulingTests.a */; };
@@ -50,6 +54,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		062574B81AE3B35E00040BE4 /* ESDatabaseDataCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESDatabaseDataCache.h; sourceTree = "<group>"; };
+		062574B91AE3B35E00040BE4 /* ESDatabaseDataCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESDatabaseDataCache.m; sourceTree = "<group>"; };
+		062574C11AE3C49100040BE4 /* ESGenethicMethodology.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESGenethicMethodology.h; sourceTree = "<group>"; };
+		062574C21AE3C49100040BE4 /* ESGenethicMethodology.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESGenethicMethodology.m; sourceTree = "<group>"; };
+		062574C41AE4035200040BE4 /* NSNumber+Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+Random.h"; sourceTree = "<group>"; };
+		062574C51AE4035200040BE4 /* NSNumber+Random.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+Random.m"; sourceTree = "<group>"; };
 		06570E5B1ADAD17B00E10AEA /* ExamScheduling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExamScheduling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06570E5F1ADAD17B00E10AEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06570E601ADAD17B00E10AEA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -78,8 +88,8 @@
 		06FBA6A91ADAD5BF00646B8D /* ESCoursesFileParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESCoursesFileParser.m; sourceTree = "<group>"; };
 		06FBA6AB1ADAD60B00646B8D /* ExamScheduling-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ExamScheduling-Prefix.pch"; sourceTree = "<group>"; };
 		06FBA6B91ADAECA600646B8D /* ESCoursesFileParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESCoursesFileParserTests.m; sourceTree = "<group>"; };
-		06FBA6BB1ADAF1EF00646B8D /* ESSimulatedAnnealing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESSimulatedAnnealing.h; sourceTree = "<group>"; };
-		06FBA6BC1ADAF1EF00646B8D /* ESSimulatedAnnealing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESSimulatedAnnealing.m; sourceTree = "<group>"; };
+		06FBA6BB1ADAF1EF00646B8D /* ESSimulatedAnnealingMethodology.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESSimulatedAnnealingMethodology.h; sourceTree = "<group>"; };
+		06FBA6BC1ADAF1EF00646B8D /* ESSimulatedAnnealingMethodology.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESSimulatedAnnealingMethodology.m; sourceTree = "<group>"; };
 		06FBA6BE1ADAF47A00646B8D /* ESSchedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESSchedule.h; sourceTree = "<group>"; };
 		06FBA6BF1ADAF47A00646B8D /* ESSchedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESSchedule.m; sourceTree = "<group>"; };
 		0D403F4AD8CE6F636A1595B6 /* libPods-ExamSchedulingTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ExamSchedulingTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,6 +120,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		062574BF1AE3C46A00040BE4 /* Genethic */ = {
+			isa = PBXGroup;
+			children = (
+				062574C11AE3C49100040BE4 /* ESGenethicMethodology.h */,
+				062574C21AE3C49100040BE4 /* ESGenethicMethodology.m */,
+			);
+			name = Genethic;
+			sourceTree = "<group>";
+		};
+		062574C01AE3C47700040BE4 /* SA */ = {
+			isa = PBXGroup;
+			children = (
+				06FBA6BB1ADAF1EF00646B8D /* ESSimulatedAnnealingMethodology.h */,
+				06FBA6BC1ADAF1EF00646B8D /* ESSimulatedAnnealingMethodology.m */,
+			);
+			name = SA;
+			sourceTree = "<group>";
+		};
 		06570E521ADAD17B00E10AEA = {
 			isa = PBXGroup;
 			children = (
@@ -144,6 +172,8 @@
 				06570E6B1ADAD17B00E10AEA /* Images.xcassets */,
 				06570E6D1ADAD17B00E10AEA /* LaunchScreen.xib */,
 				06570E5E1ADAD17B00E10AEA /* Supporting Files */,
+				062574C41AE4035200040BE4 /* NSNumber+Random.h */,
+				062574C51AE4035200040BE4 /* NSNumber+Random.m */,
 			);
 			path = ExamScheduling;
 			sourceTree = "<group>";
@@ -205,12 +235,14 @@
 		06FBA6A71ADAD59F00646B8D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				062574C01AE3C47700040BE4 /* SA */,
+				062574BF1AE3C46A00040BE4 /* Genethic */,
 				06FBA6A81ADAD5BF00646B8D /* ESCoursesFileParser.h */,
 				06FBA6A91ADAD5BF00646B8D /* ESCoursesFileParser.m */,
-				06FBA6BB1ADAF1EF00646B8D /* ESSimulatedAnnealing.h */,
-				06FBA6BC1ADAF1EF00646B8D /* ESSimulatedAnnealing.m */,
 				06FBA6BE1ADAF47A00646B8D /* ESSchedule.h */,
 				06FBA6BF1ADAF47A00646B8D /* ESSchedule.m */,
+				062574B81AE3B35E00040BE4 /* ESDatabaseDataCache.h */,
+				062574B91AE3B35E00040BE4 /* ESDatabaseDataCache.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -404,16 +436,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				062574C61AE4035200040BE4 /* NSNumber+Random.m in Sources */,
 				06FBA6C01ADAF47A00646B8D /* ESSchedule.m in Sources */,
 				06570E671ADAD17B00E10AEA /* ViewController.m in Sources */,
-				06FBA6BD1ADAF1EF00646B8D /* ESSimulatedAnnealing.m in Sources */,
+				06FBA6BD1ADAF1EF00646B8D /* ESSimulatedAnnealingMethodology.m in Sources */,
 				06FBA6AA1ADAD5BF00646B8D /* ESCoursesFileParser.m in Sources */,
 				06570E641ADAD17B00E10AEA /* AppDelegate.m in Sources */,
 				06570E611ADAD17B00E10AEA /* main.m in Sources */,
 				06FBA69A1ADAD44B00646B8D /* Model.xcdatamodeld in Sources */,
+				062574BA1AE3B35E00040BE4 /* ESDatabaseDataCache.m in Sources */,
 				06FBA6A51ADAD58900646B8D /* ESCourse.m in Sources */,
 				06FBA6A61ADAD58900646B8D /* ESStudent.m in Sources */,
 				06FBA6A31ADAD58900646B8D /* _ESCourse.m in Sources */,
+				062574C31AE3C49100040BE4 /* ESGenethicMethodology.m in Sources */,
 				06FBA6A41ADAD58900646B8D /* _ESStudent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -422,7 +457,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06B4D0401AE27D7800BA95DF /* ESSimulatedAnnealing.m in Sources */,
+				062574BB1AE3B56300040BE4 /* ESDatabaseDataCache.m in Sources */,
+				06B4D0401AE27D7800BA95DF /* ESSimulatedAnnealingMethodology.m in Sources */,
 				06B4D03F1AE26B6900BA95DF /* ESSchedule.m in Sources */,
 				06FBA6B81ADADF5700646B8D /* Model.xcdatamodeld in Sources */,
 				06FBA6BA1ADAECA600646B8D /* ESCoursesFileParserTests.m in Sources */,

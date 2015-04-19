@@ -9,7 +9,9 @@
 #import "AppDelegate.h"
 #import "ESCoursesFileParser.h"
 #import "ESCourse.h"
-#import "ESSimulatedAnnealing.h"
+#import "ESSimulatedAnnealingMethodology.h"
+#import "ESDatabaseDataCache.h"
+#import "ESGenethicMethodology.h"
 
 @interface AppDelegate ()
 
@@ -17,17 +19,31 @@
 
 @implementation AppDelegate
 
+- (void)start {
+    [[ESDatabaseDataCache sharedInstance] cacheForContext:[NSManagedObjectContext MR_defaultContext]];
+
+    ESSimulatedAnnealingMethodology *sa = [[ESSimulatedAnnealingMethodology alloc] initWithContext:[NSManagedObjectContext MR_defaultContext]];
+    ESSchedule *schedule = [sa solve];
+
+
+//    ESGenethicMethodology *ge = [[ESGenethicMethodology alloc] initWithPopulationSize:[ESDatabaseDataCache sharedInstance].courses.count context:[NSManagedObjectContext MR_defaultContext]];
+//
+//    ESSchedule *schedule = [ge solve];
+
+    
+    schedule;
+}
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [MagicalRecord setupAutoMigratingCoreDataStack];
 
     if ([ESCourse MR_countOfEntities] <= 0) {
-        [ESCoursesFileParser parseFileAtPath:[[NSBundle mainBundle] pathForResource:@"sta-f-83-stu" ofType:@"txt"] completionHandler:nil];
+        [ESCoursesFileParser parseFileAtPath:[[NSBundle mainBundle] pathForResource:@"small5-stu" ofType:@"txt"] completionHandler:^(NSError *error) {
+            [self start];
+        }];
     } else {
-        ESSimulatedAnnealing *sa = [[ESSimulatedAnnealing alloc] initWithContext:[NSManagedObjectContext MR_defaultContext]];
-        ESSchedule *schedule = [sa solve];
-
-        schedule;
+        [self start];
     }
 
 

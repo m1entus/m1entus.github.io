@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ESSchedule.h"
 
-@interface ESSimulatedAnnealing : NSObject
+@interface ESSimulatedAnnealingMethodology : NSObject
 
 /*
  * Initial Temperature, default to 0.93

@@ -11,7 +11,7 @@
 
 - (NSNumber *)qualityOfSchedule:(ESSchedule *)schedule {
 
-    double quality = 0.0;
+    __block double quality = 0.0;
 
     NSArray *myCourses = [self.courses allObjects];
     NSMutableArray *myCoursesSlots = [NSMutableArray arrayWithCapacity:myCourses.count];
@@ -24,16 +24,29 @@
         for (NSInteger j = myCourses.count-1; j < myCourses.count; j++) {
             // detect conflict
             if ([myCoursesSlots[i] integerValue] == [myCoursesSlots[j] integerValue]) {
-                quality += ESSchedulePenaltyCounterSimultaneousExams;
-            }
-
-            if (abs([myCoursesSlots[i] integerValue] - [myCoursesSlots[j] integerValue]) == 1) {
-                quality += ESSchedulePenaltyCounterConsecutiveExams;
+                return @(ESSchedulePenaltyCounterSimultaneousExams);
             }
         }
     }
 
-    // detect more than two exam per day
+
+    if (myCoursesSlots.count > 1) {
+        NSArray *sortedSlots = [myCoursesSlots sortedArrayUsingComparator:^NSComparisonResult(NSNumber *slot1, NSNumber *slot2) {
+            return [slot1 compare:slot2];
+        }];
+
+        for (NSInteger i = 0; i < sortedSlots.count - 2; i++) {
+            NSNumber *slot1 = sortedSlots[i];
+            NSNumber *slot2 = sortedSlots[i+1];
+
+            NSInteger penaltiesLevel = sizeof(ESSchedulePenaltyCounterConsecutiveExams) / sizeof(*ESSchedulePenaltyCounterConsecutiveExams);
+            NSInteger penalty = abs([slot1 integerValue] - [slot2 integerValue]) - 1;
+
+            if (penalty < penaltiesLevel) {
+                quality += ESSchedulePenaltyCounterConsecutiveExams[penalty];
+            }
+        }
+    }
 
     return @(quality);
 }

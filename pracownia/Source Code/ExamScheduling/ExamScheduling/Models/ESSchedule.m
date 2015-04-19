@@ -9,13 +9,16 @@
 #import "ESSchedule.h"
 #import "ESCourse.h"
 #import "ESStudent.h"
+#import "ESDatabaseDataCache.h"
 
 CGFloat const ESScheduleVariantWeight= 1.0;
 CGFloat const ESScheduleVariantWeightThreshold = 100.0;
 
-CGFloat const ESSchedulePenaltyCounterSimultaneousExams = CGFLOAT_MAX;
-CGFloat const ESSchedulePenaltyCounterConsecutiveExams = 2.0;
-CGFloat const ESSchedulePenaltyCounterMoreThanTwoPerDayExams = 5.0;
+// Hard constraint
+CGFloat const ESSchedulePenaltyCounterSimultaneousExams = CGFLOAT_MAX/2;
+
+// Soft constraint
+CGFloat const ESSchedulePenaltyCounterConsecutiveExams[5] = {16, 8, 4, 2, 1};
 
 @interface ESSchedule ()
 @property (nonatomic, strong, readwrite) NSNumber *quality;
@@ -29,18 +32,12 @@ CGFloat const ESSchedulePenaltyCounterMoreThanTwoPerDayExams = 5.0;
 @property (nonatomic, strong) NSMutableArray *slotCounter;
 @end
 
-static NSArray *cachedStudents = nil;
-static NSInteger cachedNumberOfCourses = 0;
-
 @implementation ESSchedule
 
 - (NSNumber *)quality {
     if (!_quality) {
-        // Calculate rank
-        if (cachedNumberOfCourses == 0) {
-            cachedNumberOfCourses = [ESCourse MR_countOfEntitiesWithContext:self.context];
-        }
-        NSInteger numberOfCourses = cachedNumberOfCourses;
+
+        NSInteger numberOfCourses = [ESDatabaseDataCache sharedInstance].courses.count;
 
         // Best distribution of schedules is that every slot has the same amount of courses
         CGFloat bestDistribution = (CGFloat)numberOfCourses / [self.totalNumberOfSlots floatValue];
@@ -58,13 +55,10 @@ static NSInteger cachedNumberOfCourses = 0;
         if (variant <= ESScheduleVariantWeightThreshold) {
             rank = variant * ESScheduleVariantWeight;
 
-            if (!cachedStudents) {
-                cachedStudents =[ESStudent MR_findAllInContext:self.context];
-            }
-            NSArray *students = cachedStudents;
+            NSArray *students = [ESDatabaseDataCache sharedInstance].students;
             [students enumerateObjectsUsingBlock:^(ESStudent *student, NSUInteger idx, BOOL *stop) {
                 rank += [[student qualityOfSchedule:self] doubleValue];
-                if (rank >= CGFLOAT_MAX) {
+                if (rank >= ESSchedulePenaltyCounterSimultaneousExams) {
                     *stop = YES;
                 }
             }];
@@ -155,7 +149,7 @@ static NSInteger cachedNumberOfCourses = 0;
 
 - (void)reassignCourse:(ESCourse *)course toSlot:(NSNumber *)slot {
     [self removeCourse:course];
-    [self insertCourse:course toSlot:slot];
+    [self insertCourse:course toSlot:@([slot integerValue] % [self.totalNumberOfSlots integerValue])];
 }
 
 #pragma mark - NSCopying

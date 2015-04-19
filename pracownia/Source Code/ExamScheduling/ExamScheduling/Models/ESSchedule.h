@@ -11,11 +11,12 @@
 @class ESCourse;
 
 extern CGFloat const ESSchedulePenaltyCounterSimultaneousExams;
-extern CGFloat const ESSchedulePenaltyCounterConsecutiveExams;
-extern CGFloat const ESSchedulePenaltyCounterMoreThanTwoPerDayExams;
+extern CGFloat const ESSchedulePenaltyCounterConsecutiveExams[5];
 
 @interface ESSchedule : NSObject <NSCopying>
 @property (nonatomic, strong) NSManagedObjectContext *context;
+
+@property (nonatomic, readonly, strong) NSMutableDictionary *slotForCourseId;
 
 /**
  *  Quality of schedule based on student ranks

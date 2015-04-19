@@ -19,13 +19,16 @@
     NSString *fileContents = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
 
     NSMutableArray *values = [[fileContents componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]] mutableCopy];
+    
     [values removeObject:@""];
 
 
     for (NSUInteger i = 0; i < values.count; i++) {
         NSString *line = values[i];
         NSString *studentId = [NSString stringWithFormat:@"%d",i];
-        NSArray *coursesIdsForStudent = [line componentsSeparatedByString:@" "];
+        NSMutableArray *coursesIdsForStudent = [[line componentsSeparatedByString:@" "] mutableCopy];
+        [coursesIdsForStudent removeObject:@""];
+        [coursesIdsForStudent removeObject:@" "];
 
         ESStudent *student = [ESStudent studentWithId:studentId inContext:localContext];
         NSArray *courses = [ESCourse coursesFromIds:coursesIdsForStudent inContext:localContext];

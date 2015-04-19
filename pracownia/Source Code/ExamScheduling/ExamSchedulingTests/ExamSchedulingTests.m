@@ -12,7 +12,7 @@
 #import "ESCoursesFileParser.h"
 #import "ESCourse.h"
 #import "ESSchedule.h"
-#import "ESSimulatedAnnealing.h"
+#import "ESSimulatedAnnealingMethodology.h"
 
 #define ARC4RANDOM_MAX      0x100000000
 
@@ -46,7 +46,7 @@
 - (void)testScheduleGeneration {
 //    [ESSchedule randomScheduleWithTotalNumberOfSlots:@14 inContext:[NSManagedObjectContext MR_defaultContext]];
 
-    ESSimulatedAnnealing *sa = [[ESSimulatedAnnealing alloc] initWithContext:[NSManagedObjectContext MR_defaultContext]];
+    ESSimulatedAnnealingMethodology *sa = [[ESSimulatedAnnealingMethodology alloc] initWithContext:[NSManagedObjectContext MR_defaultContext]];
     ESSchedule *schedule = [sa solve];
 
     schedule;
