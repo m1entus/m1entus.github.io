@@ -9,6 +9,7 @@
 #import "ESSimulatedAnnealingMethodology.h"
 #import "ESCourse.h"
 #import "ESDatabaseDataCache.h"
+#import "NSNumber+Random.h"
 
 double const E = 2.718281828;
 
@@ -25,11 +26,11 @@ double const E = 2.718281828;
 
 - (instancetype)initWithContext:(NSManagedObjectContext *)context {
     if (self = [super init]) {
-        _initialTemperature = @(0.93);
-        _freezingTemperature = @(pow(2, -10));
+        _initialTemperature = @(2.93);
+        _freezingTemperature = @(pow(2, -30));
         _phi = @(0.95);
         _perturb = @(0.1);
-        _totalNumberOfSlots = @14;
+        _totalNumberOfSlots = @15;
         _context = context;
     }
     return self;
@@ -64,7 +65,7 @@ double const E = 2.718281828;
 
                 double qualityDifference = [perturbed.quality doubleValue] - [schedule.quality doubleValue];
 
-                double randomDouble = (double)(arc4random() % ((unsigned)RAND_MAX + 1)) / (double)RAND_MAX;
+                double randomDouble = [[NSNumber randomDouble] doubleValue];
                 if (qualityDifference < 0) {
                     schedule = perturbed;
                 } else if ( randomDouble < pow(E, -qualityDifference / [self.currentTemperature doubleValue])) {

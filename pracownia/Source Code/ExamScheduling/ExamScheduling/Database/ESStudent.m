@@ -11,7 +11,7 @@
 
 - (NSNumber *)qualityOfSchedule:(ESSchedule *)schedule {
 
-    __block double quality = 0.0;
+    double quality = 0.0;
 
     NSArray *myCourses = [self.courses allObjects];
     NSMutableArray *myCoursesSlots = [NSMutableArray arrayWithCapacity:myCourses.count];
@@ -21,7 +21,7 @@
     }
 
     for (NSInteger i = 0; i < myCourses.count-1; i++) {
-        for (NSInteger j = myCourses.count-1; j < myCourses.count; j++) {
+        for (NSInteger j = i+1; j < myCourses.count; j++) {
             // detect conflict
             if ([myCoursesSlots[i] integerValue] == [myCoursesSlots[j] integerValue]) {
                 return @(ESSchedulePenaltyCounterSimultaneousExams);
@@ -35,7 +35,7 @@
             return [slot1 compare:slot2];
         }];
 
-        for (NSInteger i = 0; i < sortedSlots.count - 2; i++) {
+        for (NSInteger i = 0; i < sortedSlots.count - 1; i++) {
             NSNumber *slot1 = sortedSlots[i];
             NSNumber *slot2 = sortedSlots[i+1];
 
@@ -45,6 +45,7 @@
             if (penalty < penaltiesLevel) {
                 quality += ESSchedulePenaltyCounterConsecutiveExams[penalty];
             }
+
         }
     }
 

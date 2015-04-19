@@ -15,7 +15,7 @@ CGFloat const ESScheduleVariantWeight= 1.0;
 CGFloat const ESScheduleVariantWeightThreshold = 100.0;
 
 // Hard constraint
-CGFloat const ESSchedulePenaltyCounterSimultaneousExams = CGFLOAT_MAX/2;
+double const ESSchedulePenaltyCounterSimultaneousExams = CGFLOAT_MAX;
 
 // Soft constraint
 CGFloat const ESSchedulePenaltyCounterConsecutiveExams[5] = {16, 8, 4, 2, 1};
@@ -50,18 +50,22 @@ CGFloat const ESSchedulePenaltyCounterConsecutiveExams[5] = {16, 8, 4, 2, 1};
         variant /= (double)self.slotForCourseId.count;
 
 
-        __block double rank = 0;
+        double rank = 0;
+
+        NSArray *students = [ESDatabaseDataCache sharedInstance].students;
 
         if (variant <= ESScheduleVariantWeightThreshold) {
             rank = variant * ESScheduleVariantWeight;
 
-            NSArray *students = [ESDatabaseDataCache sharedInstance].students;
-            [students enumerateObjectsUsingBlock:^(ESStudent *student, NSUInteger idx, BOOL *stop) {
-                rank += [[student qualityOfSchedule:self] doubleValue];
-                if (rank >= ESSchedulePenaltyCounterSimultaneousExams) {
-                    *stop = YES;
+
+            for (ESStudent *student in students) {
+                double studentRank = [[student qualityOfSchedule:self] doubleValue];
+                if (studentRank >= ESSchedulePenaltyCounterSimultaneousExams) {
+                    _quality = @(CGFLOAT_MAX);
+                    return _quality;
                 }
-            }];
+                rank += (studentRank/students.count);
+            }
         } else {
             rank = CGFLOAT_MAX;
         }

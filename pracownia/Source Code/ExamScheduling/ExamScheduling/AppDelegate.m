@@ -20,6 +20,7 @@
 @implementation AppDelegate
 
 - (void)start {
+
     [[ESDatabaseDataCache sharedInstance] cacheForContext:[NSManagedObjectContext MR_defaultContext]];
 
     ESSimulatedAnnealingMethodology *sa = [[ESSimulatedAnnealingMethodology alloc] initWithContext:[NSManagedObjectContext MR_defaultContext]];
@@ -39,7 +40,7 @@
     [MagicalRecord setupAutoMigratingCoreDataStack];
 
     if ([ESCourse MR_countOfEntities] <= 0) {
-        [ESCoursesFileParser parseFileAtPath:[[NSBundle mainBundle] pathForResource:@"small5-stu" ofType:@"txt"] completionHandler:^(NSError *error) {
+        [ESCoursesFileParser parseFileAtPath:[[NSBundle mainBundle] pathForResource:@"sta-f-83-stu" ofType:@"txt"] completionHandler:^(NSError *error) {
             [self start];
         }];
     } else {

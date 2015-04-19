@@ -19,7 +19,7 @@
 
 - (instancetype)initWithPopulationSize:(NSInteger)size context:(NSManagedObjectContext *)context {
     if (self = [super init]) {
-        _totalNumberOfSlots = @15;
+        _totalNumberOfSlots = @60;
         _crossoverRate = @0.75;
         _mutationRate = @0.25;
         _topbreedRate = @0.2;

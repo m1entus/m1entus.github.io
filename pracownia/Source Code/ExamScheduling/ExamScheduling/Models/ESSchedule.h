@@ -10,7 +10,7 @@
 
 @class ESCourse;
 
-extern CGFloat const ESSchedulePenaltyCounterSimultaneousExams;
+extern double const ESSchedulePenaltyCounterSimultaneousExams;
 extern CGFloat const ESSchedulePenaltyCounterConsecutiveExams[5];
 
 @interface ESSchedule : NSObject <NSCopying>
