@@ -13,7 +13,7 @@
 
 double const E = 2.718281828;
 
-@interface ESSimulatedAnnealingMethodology ()
+@interface ESSimulatedAnnealingMethodology () <ESScheduleDataSource>
 @property (nonatomic, readwrite, strong) ESSchedule *bestSchedule;
 @property (nonatomic, strong) NSNumber *currentTemperature;
 @end
@@ -26,11 +26,11 @@ double const E = 2.718281828;
 
 - (instancetype)initWithContext:(NSManagedObjectContext *)context {
     if (self = [super init]) {
-        _initialTemperature = @(2.93);
+        _initialTemperature = @(1000.95);
         _freezingTemperature = @(pow(2, -30));
         _phi = @(0.95);
         _perturb = @(0.1);
-        _totalNumberOfSlots = @15;
+        _totalNumberOfSlots = @14;
         _context = context;
     }
     return self;
@@ -51,10 +51,11 @@ double const E = 2.718281828;
     NSInteger numberOfIterations = [ESDatabaseDataCache sharedInstance].courses.count * [self.totalNumberOfSlots integerValue];
 
     while (![self shouldStopSolver]) {
-        @autoreleasepool {
-            ESSchedule *schedule = self.bestSchedule;
-            for (NSInteger i = 0; i < numberOfIterations; i++) {
+        ESSchedule *schedule = self.bestSchedule;
+        for (NSInteger i = 0; i < numberOfIterations; i++) {
+            @autoreleasepool {
                 ESSchedule *perturbed = [schedule copy];
+                perturbed.dataSource = self;
                 NSInteger numberOfChangesToMake = arc4random() % (NSInteger)(([ESDatabaseDataCache sharedInstance].courses.count * [self.perturb doubleValue]) + 1);
                 for (NSInteger i = 0; i < numberOfChangesToMake; i++) {
                     NSArray *courses = [ESDatabaseDataCache sharedInstance].courses;
@@ -74,10 +75,12 @@ double const E = 2.718281828;
 
                 if ([schedule.quality doubleValue] < [self.bestSchedule.quality doubleValue]) {
                     self.bestSchedule = schedule;
+                    NSLog(@"QUALITY: %@\n",schedule.quality);
+                    NSLog(@"Slots: %@\n", schedule.slotForCourseId);
                 }
             }
-            self.currentTemperature = @([self.currentTemperature doubleValue] * [self.phi doubleValue]);
         }
+        self.currentTemperature = @([self.currentTemperature doubleValue] * [self.phi doubleValue]);
     }
 
     return self.bestSchedule;
@@ -92,6 +95,10 @@ double const E = 2.718281828;
             }
         });
     });
+}
+
+- (NSNumber *)currentBestScheduleQualityForSchedule:(ESSchedule *)schedule {
+    return self.bestSchedule.quality;
 }
 
 @end

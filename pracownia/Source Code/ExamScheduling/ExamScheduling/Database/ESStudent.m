@@ -24,7 +24,7 @@
         for (NSInteger j = i+1; j < myCourses.count; j++) {
             // detect conflict
             if ([myCoursesSlots[i] integerValue] == [myCoursesSlots[j] integerValue]) {
-                return @(ESSchedulePenaltyCounterSimultaneousExams);
+                quality += ESSchedulePenaltyCounterSimultaneousExams;
             }
         }
     }

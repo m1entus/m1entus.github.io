@@ -15,7 +15,7 @@ CGFloat const ESScheduleVariantWeight= 1.0;
 CGFloat const ESScheduleVariantWeightThreshold = 100.0;
 
 // Hard constraint
-double const ESSchedulePenaltyCounterSimultaneousExams = CGFLOAT_MAX;
+double const ESSchedulePenaltyCounterSimultaneousExams = 40000000.00;
 
 // Soft constraint
 CGFloat const ESSchedulePenaltyCounterConsecutiveExams[5] = {16, 8, 4, 2, 1};
@@ -37,38 +37,41 @@ CGFloat const ESSchedulePenaltyCounterConsecutiveExams[5] = {16, 8, 4, 2, 1};
 - (NSNumber *)quality {
     if (!_quality) {
 
-        NSInteger numberOfCourses = [ESDatabaseDataCache sharedInstance].courses.count;
+//        NSInteger numberOfCourses = [ESDatabaseDataCache sharedInstance].courses.count;
 
         // Best distribution of schedules is that every slot has the same amount of courses
-        CGFloat bestDistribution = (CGFloat)numberOfCourses / [self.totalNumberOfSlots floatValue];
-        __block double variant = 0.0;
-
-
-        [self.slotCounter enumerateObjectsUsingBlock:^(NSNumber *obj, NSUInteger idx, BOOL *stop) {
-            variant += pow((double)([obj integerValue] - bestDistribution), 2);
-        }];
-        variant /= (double)self.slotForCourseId.count;
-
+//        CGFloat bestDistribution = (CGFloat)numberOfCourses / [self.totalNumberOfSlots floatValue];
+//        __block double variant = 0.0;
+//
+//
+//        [self.slotCounter enumerateObjectsUsingBlock:^(NSNumber *obj, NSUInteger idx, BOOL *stop) {
+//            variant += pow((double)([obj integerValue] - bestDistribution), 2);
+//        }];
+//        variant /= (double)self.slotForCourseId.count;
+//
 
         double rank = 0;
 
         NSArray *students = [ESDatabaseDataCache sharedInstance].students;
 
-        if (variant <= ESScheduleVariantWeightThreshold) {
-            rank = variant * ESScheduleVariantWeight;
+        NSNumber *currentBestScheduleQuality = [self.dataSource currentBestScheduleQualityForSchedule:self];
+        double currentBestScheduleQualityDoubleValue = [currentBestScheduleQuality doubleValue];
 
+//        if (variant <= ESScheduleVariantWeightThreshold) {
+//            rank = variant * ESScheduleVariantWeight;
 
             for (ESStudent *student in students) {
                 double studentRank = [[student qualityOfSchedule:self] doubleValue];
-                if (studentRank >= ESSchedulePenaltyCounterSimultaneousExams) {
-                    _quality = @(CGFLOAT_MAX);
+                rank += (studentRank/students.count);
+                //optimization
+                if (currentBestScheduleQuality && currentBestScheduleQualityDoubleValue < rank) {
+                    _quality = @(rank);
                     return _quality;
                 }
-                rank += (studentRank/students.count);
             }
-        } else {
-            rank = CGFLOAT_MAX;
-        }
+//        } else {
+//            rank = CGFLOAT_MAX;
+//        }
 
         _quality = @(rank);
 

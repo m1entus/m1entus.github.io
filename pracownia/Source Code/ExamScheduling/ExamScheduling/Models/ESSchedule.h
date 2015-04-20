@@ -13,7 +13,15 @@
 extern double const ESSchedulePenaltyCounterSimultaneousExams;
 extern CGFloat const ESSchedulePenaltyCounterConsecutiveExams[5];
 
+@class ESSchedule;
+
+@protocol ESScheduleDataSource <NSObject>
+- (NSNumber *)currentBestScheduleQualityForSchedule:(ESSchedule *)schedule;
+@end
+
 @interface ESSchedule : NSObject <NSCopying>
+@property (nonatomic, weak) id <ESScheduleDataSource> dataSource;
+
 @property (nonatomic, strong) NSManagedObjectContext *context;
 
 @property (nonatomic, readonly, strong) NSMutableDictionary *slotForCourseId;

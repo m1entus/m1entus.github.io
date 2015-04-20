@@ -24,8 +24,15 @@
     [[ESDatabaseDataCache sharedInstance] cacheForContext:[NSManagedObjectContext MR_defaultContext]];
 
     ESSimulatedAnnealingMethodology *sa = [[ESSimulatedAnnealingMethodology alloc] initWithContext:[NSManagedObjectContext MR_defaultContext]];
+    NSDate *start = [NSDate date];
+
     ESSchedule *schedule = [sa solve];
 
+    NSTimeInterval timeInterval = [start timeIntervalSinceNow];
+
+    NSLog(@"QUALITY: %@\n",schedule.quality);
+    NSLog(@"Slots: %@\n", schedule.slotForCourseId);
+    NSLog(@"Time: %f",timeInterval);
 
 //    ESGenethicMethodology *ge = [[ESGenethicMethodology alloc] initWithPopulationSize:[ESDatabaseDataCache sharedInstance].courses.count context:[NSManagedObjectContext MR_defaultContext]];
 //
