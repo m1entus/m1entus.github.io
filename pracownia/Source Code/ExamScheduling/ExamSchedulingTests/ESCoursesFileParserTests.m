@@ -30,12 +30,18 @@
     [MagicalRecord cleanUp];
     [super tearDown];
 }
-- (void)testParsing {
+- (void)testParsingData {
     XCTAssertEqual([ESCourse MR_countOfEntities], 0);
 
     [ESCoursesFileParser parseSynchronouslyFileAtPath:[[NSBundle bundleForClass:[self class]] pathForResource:@"small5-stu" ofType:@"txt"] toContext:[NSManagedObjectContext MR_defaultContext]];
 
     XCTAssertEqual([ESCourse MR_countOfEntities], 80);
+}
+
+- (void)testParsingSolution {
+
+    NSDictionary *dictionary = [ESCoursesFileParser parseSolutionSlotsFileAtPath:[[NSBundle bundleForClass:[self class]] pathForResource:@"14slotsSolution" ofType:@"txt"]];
+    XCTAssertEqual(dictionary.allKeys.count, 139);
 }
 
 @end

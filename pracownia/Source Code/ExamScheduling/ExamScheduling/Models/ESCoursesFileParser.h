@@ -12,4 +12,6 @@
 
 + (void)parseFileAtPath:(NSString *)path completionHandler:(void(^)(NSError *error))completionHandler;
 + (void)parseSynchronouslyFileAtPath:(NSString *)path toContext:(NSManagedObjectContext *)context;
+
++ (NSDictionary *)parseSolutionSlotsFileAtPath:(NSString *)path;
 @end

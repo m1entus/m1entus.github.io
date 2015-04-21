@@ -1,4 +1,6 @@
 #import "ESCourse.h"
+#import "ESStudent.h"
+#import "ESDatabaseDataCache.h"
 
 @interface ESCourse ()
 

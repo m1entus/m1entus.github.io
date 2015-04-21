@@ -26,7 +26,7 @@ double const E = 2.718281828;
 
 - (instancetype)initWithContext:(NSManagedObjectContext *)context {
     if (self = [super init]) {
-        _initialTemperature = @(1000.95);
+        _initialTemperature = @(1200.95);
         _freezingTemperature = @(pow(2, -30));
         _phi = @(0.95);
         _perturb = @(0.1);
@@ -75,8 +75,10 @@ double const E = 2.718281828;
 
                 if ([schedule.quality doubleValue] < [self.bestSchedule.quality doubleValue]) {
                     self.bestSchedule = schedule;
-                    NSLog(@"QUALITY: %@\n",schedule.quality);
+
                     NSLog(@"Slots: %@\n", schedule.slotForCourseId);
+                    NSLog(@"Current Temperature: %@\n",self.currentTemperature);
+                    NSLog(@"QUALITY: %@\n",schedule.quality);
                 }
             }
         }

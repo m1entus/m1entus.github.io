@@ -37,4 +37,5 @@ extern CGFloat const ESSchedulePenaltyCounterConsecutiveExams[5];
 - (void)reassignCourse:(ESCourse *)course toSlot:(NSNumber *)slot;
 
 - (NSNumber *)slotForCourse:(ESCourse *)course;
+- (void)insertCourse:(ESCourse *)course toSlot:(NSNumber *)slot;
 @end

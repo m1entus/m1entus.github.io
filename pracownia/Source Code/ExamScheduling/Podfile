@@ -3,6 +3,7 @@ pod 'MagicalRecord'
 
 target 'ExamSchedulingTests', :exclusive => true do
     pod 'MagicalRecord'
+    pod 'OCMock'
 end
 
 inhibit_all_warnings!

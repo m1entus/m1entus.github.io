@@ -11,7 +11,6 @@
 #import "ESCourse.h"
 #import "ESSimulatedAnnealingMethodology.h"
 #import "ESDatabaseDataCache.h"
-#import "ESGenethicMethodology.h"
 
 @interface AppDelegate ()
 
@@ -30,16 +29,9 @@
 
     NSTimeInterval timeInterval = [start timeIntervalSinceNow];
 
-    NSLog(@"QUALITY: %@\n",schedule.quality);
     NSLog(@"Slots: %@\n", schedule.slotForCourseId);
-    NSLog(@"Time: %f",timeInterval);
-
-//    ESGenethicMethodology *ge = [[ESGenethicMethodology alloc] initWithPopulationSize:[ESDatabaseDataCache sharedInstance].courses.count context:[NSManagedObjectContext MR_defaultContext]];
-//
-//    ESSchedule *schedule = [ge solve];
-
-    
-    schedule;
+    NSLog(@"QUALITY: %@\n",schedule.quality);
+    NSLog(@"Time: %f\n",fabs(timeInterval));
 }
 
 
@@ -48,7 +40,11 @@
 
     if ([ESCourse MR_countOfEntities] <= 0) {
         [ESCoursesFileParser parseFileAtPath:[[NSBundle mainBundle] pathForResource:@"sta-f-83-stu" ofType:@"txt"] completionHandler:^(NSError *error) {
-            [self start];
+            if (error) {
+                [[[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+            } else {
+                [self start];
+            }
         }];
     } else {
         [self start];

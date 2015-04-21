@@ -25,7 +25,7 @@
 
     for (NSUInteger i = 0; i < values.count; i++) {
         NSString *line = values[i];
-        NSString *studentId = [NSString stringWithFormat:@"%d",i];
+        NSString *studentId = [NSString stringWithFormat:@"%lu",(unsigned long)i];
         NSMutableArray *coursesIdsForStudent = [[line componentsSeparatedByString:@" "] mutableCopy];
         [coursesIdsForStudent removeObject:@""];
         [coursesIdsForStudent removeObject:@" "];
@@ -47,6 +47,23 @@
             completionHandler(error);
         }
     }];
+}
+
++ (NSDictionary *)parseSolutionSlotsFileAtPath:(NSString *)path {
+    NSString *fileContents = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+
+    NSMutableArray *values = [[fileContents componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]] mutableCopy];
+
+    [values removeObject:@""];
+
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+
+    for (NSUInteger i = 0; i < values.count; i++) {
+        NSString *line = [[values[i] stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@";" withString:@""];
+        NSMutableArray *coursesIdsForSlot = [[line componentsSeparatedByString:@"="] mutableCopy];
+        dictionary[[coursesIdsForSlot firstObject]] = [coursesIdsForSlot lastObject];
+    }
+    return [dictionary copy];
 }
 
 @end

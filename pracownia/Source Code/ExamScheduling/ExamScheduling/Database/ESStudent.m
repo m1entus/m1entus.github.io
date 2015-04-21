@@ -1,5 +1,6 @@
 #import "ESStudent.h"
 #import "ESSchedule.h"
+#import "ESDatabaseDataCache.h"
 
 @interface ESStudent ()
 
@@ -9,48 +10,56 @@
 
 @implementation ESStudent
 
-- (NSNumber *)qualityOfSchedule:(ESSchedule *)schedule {
+- (NSInteger)myCoursesCount {
+    return self.courses.count;
+}
 
-    double quality = 0.0;
+- (NSArray *)myCoursesSlotsForSchedule:(ESSchedule *)schedule {
+    NSMutableArray *myCoursesSlots = [NSMutableArray arrayWithCapacity:[self myCoursesCount]];
 
-    NSArray *myCourses = [self.courses allObjects];
-    NSMutableArray *myCoursesSlots = [NSMutableArray arrayWithCapacity:myCourses.count];
-
-    for (ESCourse *course in myCourses) {
+    for (ESCourse *course in self.courses) {
         [myCoursesSlots addObject:[schedule slotForCourse:course]];
     }
+    return [myCoursesSlots copy];
+}
 
-    for (NSInteger i = 0; i < myCourses.count-1; i++) {
-        for (NSInteger j = i+1; j < myCourses.count; j++) {
-            // detect conflict
-            if ([myCoursesSlots[i] integerValue] == [myCoursesSlots[j] integerValue]) {
-                quality += ESSchedulePenaltyCounterSimultaneousExams;
-            }
-        }
-    }
+- (void)qualityOfSchedule:(ESSchedule *)schedule withBlock:(void(^)(double simultaneousExamsPenalty, double studentPenalty))block {
 
+    double simultaneousExamsPenalty = 0.0;
+    double studentPenalty = 0.0;
+
+    NSArray *myCoursesSlots = [self myCoursesSlotsForSchedule:schedule];
 
     if (myCoursesSlots.count > 1) {
-        NSArray *sortedSlots = [myCoursesSlots sortedArrayUsingComparator:^NSComparisonResult(NSNumber *slot1, NSNumber *slot2) {
-            return [slot1 compare:slot2];
-        }];
 
-        for (NSInteger i = 0; i < sortedSlots.count - 1; i++) {
-            NSNumber *slot1 = sortedSlots[i];
-            NSNumber *slot2 = sortedSlots[i+1];
+        for (NSInteger i = 0; i < myCoursesSlots.count - 1; i++) {
 
-            NSInteger penaltiesLevel = sizeof(ESSchedulePenaltyCounterConsecutiveExams) / sizeof(*ESSchedulePenaltyCounterConsecutiveExams);
-            NSInteger penalty = abs([slot1 integerValue] - [slot2 integerValue]) - 1;
+            for (NSInteger j = i+1; j < myCoursesSlots.count; j++) {
+                NSNumber *slot1 = myCoursesSlots[i];
+                NSNumber *slot2 = myCoursesSlots[j];
+                NSInteger slot1Integer = [slot1 integerValue];
+                NSInteger slot2Integer = [slot2 integerValue];
 
-            if (penalty < penaltiesLevel) {
-                quality += ESSchedulePenaltyCounterConsecutiveExams[penalty];
+                // detect conflict
+                if (slot1Integer == slot2Integer) {
+                    simultaneousExamsPenalty += ESSchedulePenaltyCounterSimultaneousExams;
+                } else {
+                    NSInteger penaltiesLevel = sizeof(ESSchedulePenaltyCounterConsecutiveExams) / sizeof(*ESSchedulePenaltyCounterConsecutiveExams);
+                    NSInteger penalty = abs((int)slot2Integer - (int)slot1Integer) - 1;
+                    if (penalty < penaltiesLevel && penalty >= 0) {
+                        studentPenalty += ESSchedulePenaltyCounterConsecutiveExams[penalty];
+                    }
+                }
             }
-
         }
     }
 
-    return @(quality);
+    if (block) {
+        block(simultaneousExamsPenalty,studentPenalty);
+    }
+
 }
+
 
 + (instancetype)studentWithId:(NSString *)studentId inContext:(NSManagedObjectContext *)context {
 

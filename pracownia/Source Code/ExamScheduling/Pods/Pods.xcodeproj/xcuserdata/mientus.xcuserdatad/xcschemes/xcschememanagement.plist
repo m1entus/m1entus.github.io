@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-ExamSchedulingTests-OCMock.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-ExamSchedulingTests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>26FD6EBDE3ABA2F8596DB0EA</key>
+		<key>4853478268EA19EDBF51A029</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7D239928EAF206A8241B5583</key>
+		<key>7B1F801F1384FCF15B747F28</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9F317D78C923047E9A252548</key>
+		<key>943CF7A4386427141EB9206E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F90702C87B27F08B8C56CB38</key>
+		<key>D604D3BD21094ECA9C5EB9FE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EA51A5CEC2BAE0AAD180EA86</key>
 		<dict>
 			<key>primary</key>
 			<true/>
