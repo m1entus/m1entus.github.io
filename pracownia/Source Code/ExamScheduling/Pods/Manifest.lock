@@ -1,15 +1,13 @@
 PODS:
-  - MagicalRecord (2.2):
-    - MagicalRecord/Core (= 2.2)
-  - MagicalRecord/Core (2.2)
+  - FastCoding (3.2.1)
   - OCMock (3.1.2)
 
 DEPENDENCIES:
-  - MagicalRecord
+  - FastCoding
   - OCMock
 
 SPEC CHECKSUMS:
-  MagicalRecord: f8a56bb87ab6552f20c4bb8681a1958a197ea3cd
+  FastCoding: ed46c83ba23d048aafa0251972a1e1fc1cfc58ed
   OCMock: a10ea9f0a6e921651f96f78b6faee95ebc813b92
 
 COCOAPODS: 0.36.3

@@ -6,17 +6,11 @@
 // project.
 
 
-// MagicalRecord
-#define COCOAPODS_POD_AVAILABLE_MagicalRecord
-#define COCOAPODS_VERSION_MAJOR_MagicalRecord 2
-#define COCOAPODS_VERSION_MINOR_MagicalRecord 2
-#define COCOAPODS_VERSION_PATCH_MagicalRecord 0
-
-// MagicalRecord/Core
-#define COCOAPODS_POD_AVAILABLE_MagicalRecord_Core
-#define COCOAPODS_VERSION_MAJOR_MagicalRecord_Core 2
-#define COCOAPODS_VERSION_MINOR_MagicalRecord_Core 2
-#define COCOAPODS_VERSION_PATCH_MagicalRecord_Core 0
+// FastCoding
+#define COCOAPODS_POD_AVAILABLE_FastCoding
+#define COCOAPODS_VERSION_MAJOR_FastCoding 3
+#define COCOAPODS_VERSION_MINOR_FastCoding 2
+#define COCOAPODS_VERSION_PATCH_FastCoding 1
 
 // OCMock
 #define COCOAPODS_POD_AVAILABLE_OCMock

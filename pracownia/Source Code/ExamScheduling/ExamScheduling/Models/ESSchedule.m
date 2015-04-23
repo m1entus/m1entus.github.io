@@ -9,7 +9,7 @@
 #import "ESSchedule.h"
 #import "ESCourse.h"
 #import "ESStudent.h"
-#import "ESDatabaseDataCache.h"
+#import "ESDataCache.h"
 
 // Hard constraint
 double const ESSchedulePenaltyCounterSimultaneousExams = 4000000.00;
@@ -34,16 +34,20 @@ CGFloat const ESSchedulePenaltyCounterConsecutiveExams[5] = {16, 8, 4, 2, 1};
         NSNumber *currentBestScheduleQuality = [self.dataSource currentBestScheduleQualityForSchedule:self];
         double currentBestScheduleQualityDoubleValue = [currentBestScheduleQuality doubleValue];
 
-        NSArray *students = [ESDatabaseDataCache sharedInstance].students;
+        NSArray *students = [ESDataCache sharedInstance].students;
 
-        [students enumerateObjectsWithOptions:0 usingBlock:^(ESStudent *student, NSUInteger idx, BOOL *stop) {
+        NSLock *lock = [[NSLock alloc] init];
+
+        [students enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(ESStudent *student, NSUInteger idx, BOOL *stop) {
 
             [student qualityOfSchedule:self withBlock:^(double simultaneousExamsPenalty, double studentPenalty) {
+                [lock lock];
                 if (simultaneousExamsPenalty) {
                     rank += simultaneousExamsPenalty;
                 } else {
                     rank += (studentPenalty/students.count);
                 }
+                [lock unlock];
             }];
 
             //optimization
@@ -58,19 +62,18 @@ CGFloat const ESSchedulePenaltyCounterConsecutiveExams[5] = {16, 8, 4, 2, 1};
     return _quality;
 }
 
-+ (instancetype)randomScheduleWithTotalNumberOfSlots:(NSNumber *)numberOfSlots inContext:(NSManagedObjectContext *)context {
-    ESSchedule *schedule = [[self alloc] initWithTotalNumberOfSlots:numberOfSlots inContext:context];
++ (instancetype)randomScheduleWithTotalNumberOfSlots:(NSNumber *)numberOfSlots {
+    ESSchedule *schedule = [[self alloc] initWithTotalNumberOfSlots:numberOfSlots];
     [schedule generateSchedule];
 
     return schedule;
 }
 
-- (instancetype)initWithTotalNumberOfSlots:(NSNumber *)numberOfSlots inContext:(NSManagedObjectContext *)context {
+- (instancetype)initWithTotalNumberOfSlots:(NSNumber *)numberOfSlots {
     if (self = [super init]) {
         NSParameterAssert(numberOfSlots);
 
         _totalNumberOfSlots = numberOfSlots;
-        _context = context;
         _slotForCourseId = [NSMutableDictionary dictionary];
     }
 
@@ -80,7 +83,7 @@ CGFloat const ESSchedulePenaltyCounterConsecutiveExams[5] = {16, 8, 4, 2, 1};
 #pragma mark - Private
 
 - (void)generateSchedule {
-    NSArray *results = [ESCourse MR_findAllInContext:self.context];
+    NSArray *results = [ESDataCache sharedInstance].courses;
     [results enumerateObjectsUsingBlock:^(ESCourse *obj, NSUInteger idx, BOOL *stop) {
         NSInteger randomSlot = arc4random()%[self.totalNumberOfSlots integerValue];
         [self insertCourse:obj toSlot:@(randomSlot)];
@@ -110,7 +113,7 @@ CGFloat const ESSchedulePenaltyCounterConsecutiveExams[5] = {16, 8, 4, 2, 1};
 #pragma mark - NSCopying
 
 - (id)copyWithZone:(NSZone *)zone {
-    ESSchedule *schedule = [[ESSchedule alloc] initWithTotalNumberOfSlots:[self.totalNumberOfSlots copyWithZone:zone] inContext:self.context];
+    ESSchedule *schedule = [[ESSchedule alloc] initWithTotalNumberOfSlots:[self.totalNumberOfSlots copyWithZone:zone]];
 
     schedule.slotForCourseId = [self.slotForCourseId mutableCopyWithZone:zone];
 

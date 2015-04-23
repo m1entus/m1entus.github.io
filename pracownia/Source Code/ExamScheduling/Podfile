@@ -1,8 +1,8 @@
 platform :ios, "8.0"
-pod 'MagicalRecord'
+pod 'FastCoding'
 
 target 'ExamSchedulingTests', :exclusive => true do
-    pod 'MagicalRecord'
+    pod 'FastCoding'
     pod 'OCMock'
 end
 

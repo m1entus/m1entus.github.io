@@ -12,9 +12,7 @@
 
 @implementation ESCoursesFileParser
 
-+ (void)parseSynchronouslyFileAtPath:(NSString *)path toContext:(NSManagedObjectContext *)localContext {
-    [ESCourse MR_truncateAllInContext:localContext];
-    [ESStudent MR_truncateAllInContext:localContext];
++ (void)parseSynchronouslyFileAtPath:(NSString *)path completionHandler:(ESCoursesFileParserCompletionHandler)completionHandler {
 
     NSString *fileContents = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
 
@@ -22,6 +20,8 @@
     
     [values removeObject:@""];
 
+    NSMutableArray *students = [NSMutableArray arrayWithCapacity:values.count];
+    NSMutableDictionary *coursesDictionary = [NSMutableDictionary dictionary];
 
     for (NSUInteger i = 0; i < values.count; i++) {
         NSString *line = values[i];
@@ -30,23 +30,34 @@
         [coursesIdsForStudent removeObject:@""];
         [coursesIdsForStudent removeObject:@" "];
 
-        ESStudent *student = [ESStudent studentWithId:studentId inContext:localContext];
-        NSArray *courses = [ESCourse coursesFromIds:coursesIdsForStudent inContext:localContext];
-        [student addCourses:[NSSet setWithArray:courses]];
 
+        NSArray *courses = [ESCourse coursesFromIDs:coursesIdsForStudent];
+        ESStudent *student = [ESStudent studentWithId:studentId courses:courses];
+        [students addObject:student];
+
+        for (ESCourse *course in courses) {
+            if (!coursesDictionary[course.courseId]) {
+                coursesDictionary[course.courseId] = course;
+            }
+        }
+    }
+
+    if (completionHandler) {
+        completionHandler([students copy],[coursesDictionary allValues]);
     }
 }
 
-+ (void)parseFileAtPath:(NSString *)path completionHandler:(void(^)(NSError *error))completionHandler {
++ (void)parseFileAtPath:(NSString *)path completionHandler:(ESCoursesFileParserCompletionHandler)completionHandler {
 
-    [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-        [self parseSynchronouslyFileAtPath:path toContext:localContext];
-
-    } completion:^(BOOL success, NSError *error) {
-        if (completionHandler) {
-            completionHandler(error);
-        }
-    }];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        [self parseFileAtPath:path completionHandler:^(NSArray *students, NSArray *courses) {
+            if (completionHandler) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    completionHandler(students,courses);
+                });
+            }
+        }];
+    });
 }
 
 + (NSDictionary *)parseSolutionSlotsFileAtPath:(NSString *)path {

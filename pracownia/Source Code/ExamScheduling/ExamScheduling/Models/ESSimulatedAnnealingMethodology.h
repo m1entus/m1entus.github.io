@@ -38,10 +38,7 @@
 
 @property (nonatomic, readonly) ESSchedule *bestSchedule;
 
-@property (nonatomic, strong) NSManagedObjectContext *context;
-
-+ (instancetype)solverForContext:(NSManagedObjectContext *)context;
-- (instancetype)initWithContext:(NSManagedObjectContext *)context;
+- (instancetype)init;
 
 - (ESSchedule *)solve;
 

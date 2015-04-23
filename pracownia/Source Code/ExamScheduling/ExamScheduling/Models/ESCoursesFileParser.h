@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void(^ESCoursesFileParserCompletionHandler)(NSArray *students, NSArray *courses);
+
 @interface ESCoursesFileParser : NSObject
 
-+ (void)parseFileAtPath:(NSString *)path completionHandler:(void(^)(NSError *error))completionHandler;
-+ (void)parseSynchronouslyFileAtPath:(NSString *)path toContext:(NSManagedObjectContext *)context;
++ (void)parseFileAtPath:(NSString *)path completionHandler:(ESCoursesFileParserCompletionHandler)completionHandler;
++ (void)parseSynchronouslyFileAtPath:(NSString *)path completionHandler:(ESCoursesFileParserCompletionHandler)completionHandler;
 
 + (NSDictionary *)parseSolutionSlotsFileAtPath:(NSString *)path;
 @end

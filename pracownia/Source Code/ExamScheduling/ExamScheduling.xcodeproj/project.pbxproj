@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		062574BA1AE3B35E00040BE4 /* ESDatabaseDataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 062574B91AE3B35E00040BE4 /* ESDatabaseDataCache.m */; };
-		062574BB1AE3B56300040BE4 /* ESDatabaseDataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 062574B91AE3B35E00040BE4 /* ESDatabaseDataCache.m */; };
+		062574BA1AE3B35E00040BE4 /* ESDataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 062574B91AE3B35E00040BE4 /* ESDataCache.m */; };
+		062574BB1AE3B56300040BE4 /* ESDataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 062574B91AE3B35E00040BE4 /* ESDataCache.m */; };
 		062574C61AE4035200040BE4 /* NSNumber+Random.m in Sources */ = {isa = PBXBuildFile; fileRef = 062574C51AE4035200040BE4 /* NSNumber+Random.m */; };
 		064003201AE6D2CD008F7DD3 /* sta-f-83-stu-14slot.sol in Resources */ = {isa = PBXBuildFile; fileRef = 0640031F1AE6D2CD008F7DD3 /* sta-f-83-stu-14slot.sol */; };
 		064003211AE6D37F008F7DD3 /* sta-f-83-stu-14slot.sol in Resources */ = {isa = PBXBuildFile; fileRef = 0640031F1AE6D2CD008F7DD3 /* sta-f-83-stu-14slot.sol */; };
@@ -21,27 +21,19 @@
 		06570E6A1ADAD17B00E10AEA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06570E681ADAD17B00E10AEA /* Main.storyboard */; };
 		06570E6C1ADAD17B00E10AEA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06570E6B1ADAD17B00E10AEA /* Images.xcassets */; };
 		06570E6F1ADAD17B00E10AEA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06570E6D1ADAD17B00E10AEA /* LaunchScreen.xib */; };
-		066578FC1AE6FF7D003D01EE /* pen.sol in Resources */ = {isa = PBXBuildFile; fileRef = 066578FB1AE6FF7D003D01EE /* pen.sol */; };
-		066578FD1AE6FF7D003D01EE /* pen.sol in Resources */ = {isa = PBXBuildFile; fileRef = 066578FB1AE6FF7D003D01EE /* pen.sol */; };
+		066CCE731AE9553300CF4869 /* ESCourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 066CCE721AE9553300CF4869 /* ESCourse.m */; };
+		066CCE761AE9556E00CF4869 /* ESStudent.m in Sources */ = {isa = PBXBuildFile; fileRef = 066CCE751AE9556E00CF4869 /* ESStudent.m */; };
+		066CCE771AE95CEA00CF4869 /* ESCourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 066CCE721AE9553300CF4869 /* ESCourse.m */; };
+		066CCE781AE95CEA00CF4869 /* ESStudent.m in Sources */ = {isa = PBXBuildFile; fileRef = 066CCE751AE9556E00CF4869 /* ESStudent.m */; };
 		06A9E2F71AE5A4BD00806F3E /* NSNumber+Random.m in Sources */ = {isa = PBXBuildFile; fileRef = 062574C51AE4035200040BE4 /* NSNumber+Random.m */; };
 		06B4D03F1AE26B6900BA95DF /* ESSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBA6BF1ADAF47A00646B8D /* ESSchedule.m */; };
 		06B4D0401AE27D7800BA95DF /* ESSimulatedAnnealingMethodology.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBA6BC1ADAF1EF00646B8D /* ESSimulatedAnnealingMethodology.m */; };
 		06FBA6951ADAD33B00646B8D /* small5-stu.txt in Resources */ = {isa = PBXBuildFile; fileRef = 06FBA6931ADAD33B00646B8D /* small5-stu.txt */; };
 		06FBA6961ADAD33B00646B8D /* sta-f-83-stu.txt in Resources */ = {isa = PBXBuildFile; fileRef = 06FBA6941ADAD33B00646B8D /* sta-f-83-stu.txt */; };
-		06FBA69A1ADAD44B00646B8D /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 06FBA6981ADAD44B00646B8D /* Model.xcdatamodeld */; };
-		06FBA6A31ADAD58900646B8D /* _ESCourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBA69C1ADAD58900646B8D /* _ESCourse.m */; };
-		06FBA6A41ADAD58900646B8D /* _ESStudent.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBA69E1ADAD58900646B8D /* _ESStudent.m */; };
-		06FBA6A51ADAD58900646B8D /* ESCourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBA6A01ADAD58900646B8D /* ESCourse.m */; };
-		06FBA6A61ADAD58900646B8D /* ESStudent.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBA6A21ADAD58900646B8D /* ESStudent.m */; };
 		06FBA6AA1ADAD5BF00646B8D /* ESCoursesFileParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBA6A91ADAD5BF00646B8D /* ESCoursesFileParser.m */; };
-		06FBA6AD1ADADE7600646B8D /* _ESCourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBA69C1ADAD58900646B8D /* _ESCourse.m */; };
-		06FBA6AF1ADADE7600646B8D /* _ESStudent.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBA69E1ADAD58900646B8D /* _ESStudent.m */; };
-		06FBA6B11ADADE7600646B8D /* ESCourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBA6A01ADAD58900646B8D /* ESCourse.m */; };
-		06FBA6B31ADADE7600646B8D /* ESStudent.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBA6A21ADAD58900646B8D /* ESStudent.m */; };
 		06FBA6B51ADADE7600646B8D /* ESCoursesFileParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBA6A91ADAD5BF00646B8D /* ESCoursesFileParser.m */; };
 		06FBA6B61ADADF4900646B8D /* small5-stu.txt in Resources */ = {isa = PBXBuildFile; fileRef = 06FBA6931ADAD33B00646B8D /* small5-stu.txt */; };
 		06FBA6B71ADADF4900646B8D /* sta-f-83-stu.txt in Resources */ = {isa = PBXBuildFile; fileRef = 06FBA6941ADAD33B00646B8D /* sta-f-83-stu.txt */; };
-		06FBA6B81ADADF5700646B8D /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 06FBA6981ADAD44B00646B8D /* Model.xcdatamodeld */; };
 		06FBA6BA1ADAECA600646B8D /* ESCoursesFileParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBA6B91ADAECA600646B8D /* ESCoursesFileParserTests.m */; };
 		06FBA6BD1ADAF1EF00646B8D /* ESSimulatedAnnealingMethodology.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBA6BC1ADAF1EF00646B8D /* ESSimulatedAnnealingMethodology.m */; };
 		06FBA6C01ADAF47A00646B8D /* ESSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBA6BF1ADAF47A00646B8D /* ESSchedule.m */; };
@@ -60,8 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		062574B81AE3B35E00040BE4 /* ESDatabaseDataCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESDatabaseDataCache.h; sourceTree = "<group>"; };
-		062574B91AE3B35E00040BE4 /* ESDatabaseDataCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESDatabaseDataCache.m; sourceTree = "<group>"; };
+		062574B81AE3B35E00040BE4 /* ESDataCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESDataCache.h; sourceTree = "<group>"; };
+		062574B91AE3B35E00040BE4 /* ESDataCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESDataCache.m; sourceTree = "<group>"; };
 		062574C41AE4035200040BE4 /* NSNumber+Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+Random.h"; sourceTree = "<group>"; };
 		062574C51AE4035200040BE4 /* NSNumber+Random.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+Random.m"; sourceTree = "<group>"; };
 		0640031F1AE6D2CD008F7DD3 /* sta-f-83-stu-14slot.sol */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "sta-f-83-stu-14slot.sol"; sourceTree = "<group>"; };
@@ -79,18 +71,12 @@
 		06570E6E1ADAD17B00E10AEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		06570E741ADAD17B00E10AEA /* ExamSchedulingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExamSchedulingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		06570E791ADAD17B00E10AEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		066578FB1AE6FF7D003D01EE /* pen.sol */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pen.sol; sourceTree = "<group>"; };
+		066CCE711AE9553300CF4869 /* ESCourse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCourse.h; sourceTree = "<group>"; };
+		066CCE721AE9553300CF4869 /* ESCourse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESCourse.m; sourceTree = "<group>"; };
+		066CCE741AE9556E00CF4869 /* ESStudent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESStudent.h; sourceTree = "<group>"; };
+		066CCE751AE9556E00CF4869 /* ESStudent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESStudent.m; sourceTree = "<group>"; };
 		06FBA6931ADAD33B00646B8D /* small5-stu.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "small5-stu.txt"; sourceTree = "<group>"; };
 		06FBA6941ADAD33B00646B8D /* sta-f-83-stu.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "sta-f-83-stu.txt"; sourceTree = "<group>"; };
-		06FBA6991ADAD44B00646B8D /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		06FBA69B1ADAD58900646B8D /* _ESCourse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ESCourse.h; sourceTree = "<group>"; };
-		06FBA69C1ADAD58900646B8D /* _ESCourse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _ESCourse.m; sourceTree = "<group>"; };
-		06FBA69D1ADAD58900646B8D /* _ESStudent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ESStudent.h; sourceTree = "<group>"; };
-		06FBA69E1ADAD58900646B8D /* _ESStudent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _ESStudent.m; sourceTree = "<group>"; };
-		06FBA69F1ADAD58900646B8D /* ESCourse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCourse.h; sourceTree = "<group>"; };
-		06FBA6A01ADAD58900646B8D /* ESCourse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESCourse.m; sourceTree = "<group>"; };
-		06FBA6A11ADAD58900646B8D /* ESStudent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESStudent.h; sourceTree = "<group>"; };
-		06FBA6A21ADAD58900646B8D /* ESStudent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESStudent.m; sourceTree = "<group>"; };
 		06FBA6A81ADAD5BF00646B8D /* ESCoursesFileParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCoursesFileParser.h; sourceTree = "<group>"; };
 		06FBA6A91ADAD5BF00646B8D /* ESCoursesFileParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESCoursesFileParser.m; sourceTree = "<group>"; };
 		06FBA6AB1ADAD60B00646B8D /* ExamScheduling-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ExamScheduling-Prefix.pch"; sourceTree = "<group>"; };
@@ -139,7 +125,6 @@
 		06570E521ADAD17B00E10AEA = {
 			isa = PBXGroup;
 			children = (
-				06FBA6971ADAD43B00646B8D /* Database */,
 				06FBA6921ADAD2B400646B8D /* Assets */,
 				06570E5D1ADAD17B00E10AEA /* ExamScheduling */,
 				06570E771ADAD17B00E10AEA /* ExamSchedulingTests */,
@@ -211,26 +196,8 @@
 				06FBA6941ADAD33B00646B8D /* sta-f-83-stu.txt */,
 				0640031F1AE6D2CD008F7DD3 /* sta-f-83-stu-14slot.sol */,
 				064003241AE6D7D0008F7DD3 /* small5-stu-14slot.sol */,
-				066578FB1AE6FF7D003D01EE /* pen.sol */,
 			);
 			name = Assets;
-			sourceTree = "<group>";
-		};
-		06FBA6971ADAD43B00646B8D /* Database */ = {
-			isa = PBXGroup;
-			children = (
-				06FBA69B1ADAD58900646B8D /* _ESCourse.h */,
-				06FBA69C1ADAD58900646B8D /* _ESCourse.m */,
-				06FBA69D1ADAD58900646B8D /* _ESStudent.h */,
-				06FBA69E1ADAD58900646B8D /* _ESStudent.m */,
-				06FBA69F1ADAD58900646B8D /* ESCourse.h */,
-				06FBA6A01ADAD58900646B8D /* ESCourse.m */,
-				06FBA6A11ADAD58900646B8D /* ESStudent.h */,
-				06FBA6A21ADAD58900646B8D /* ESStudent.m */,
-				06FBA6981ADAD44B00646B8D /* Model.xcdatamodeld */,
-			);
-			name = Database;
-			path = ExamScheduling/Database;
 			sourceTree = "<group>";
 		};
 		06FBA6A71ADAD59F00646B8D /* Models */ = {
@@ -241,8 +208,12 @@
 				06FBA6A91ADAD5BF00646B8D /* ESCoursesFileParser.m */,
 				06FBA6BE1ADAF47A00646B8D /* ESSchedule.h */,
 				06FBA6BF1ADAF47A00646B8D /* ESSchedule.m */,
-				062574B81AE3B35E00040BE4 /* ESDatabaseDataCache.h */,
-				062574B91AE3B35E00040BE4 /* ESDatabaseDataCache.m */,
+				062574B81AE3B35E00040BE4 /* ESDataCache.h */,
+				062574B91AE3B35E00040BE4 /* ESDataCache.m */,
+				066CCE711AE9553300CF4869 /* ESCourse.h */,
+				066CCE721AE9553300CF4869 /* ESCourse.m */,
+				066CCE741AE9556E00CF4869 /* ESStudent.h */,
+				066CCE751AE9556E00CF4869 /* ESStudent.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -355,7 +326,6 @@
 				064003201AE6D2CD008F7DD3 /* sta-f-83-stu-14slot.sol in Resources */,
 				06570E6C1ADAD17B00E10AEA /* Images.xcassets in Resources */,
 				06FBA6951ADAD33B00646B8D /* small5-stu.txt in Resources */,
-				066578FC1AE6FF7D003D01EE /* pen.sol in Resources */,
 				06FBA6961ADAD33B00646B8D /* sta-f-83-stu.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -366,7 +336,6 @@
 			files = (
 				064003261AE6D849008F7DD3 /* small5-stu-14slot.sol in Resources */,
 				064003211AE6D37F008F7DD3 /* sta-f-83-stu-14slot.sol in Resources */,
-				066578FD1AE6FF7D003D01EE /* pen.sol in Resources */,
 				06FBA6B61ADADF4900646B8D /* small5-stu.txt in Resources */,
 				06FBA6B71ADADF4900646B8D /* sta-f-83-stu.txt in Resources */,
 			);
@@ -443,18 +412,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				062574C61AE4035200040BE4 /* NSNumber+Random.m in Sources */,
+				066CCE761AE9556E00CF4869 /* ESStudent.m in Sources */,
 				06FBA6C01ADAF47A00646B8D /* ESSchedule.m in Sources */,
 				06570E671ADAD17B00E10AEA /* ViewController.m in Sources */,
 				06FBA6BD1ADAF1EF00646B8D /* ESSimulatedAnnealingMethodology.m in Sources */,
+				066CCE731AE9553300CF4869 /* ESCourse.m in Sources */,
 				06FBA6AA1ADAD5BF00646B8D /* ESCoursesFileParser.m in Sources */,
 				06570E641ADAD17B00E10AEA /* AppDelegate.m in Sources */,
 				06570E611ADAD17B00E10AEA /* main.m in Sources */,
-				06FBA69A1ADAD44B00646B8D /* Model.xcdatamodeld in Sources */,
-				062574BA1AE3B35E00040BE4 /* ESDatabaseDataCache.m in Sources */,
-				06FBA6A51ADAD58900646B8D /* ESCourse.m in Sources */,
-				06FBA6A61ADAD58900646B8D /* ESStudent.m in Sources */,
-				06FBA6A31ADAD58900646B8D /* _ESCourse.m in Sources */,
-				06FBA6A41ADAD58900646B8D /* _ESStudent.m in Sources */,
+				062574BA1AE3B35E00040BE4 /* ESDataCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,16 +428,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				066CCE771AE95CEA00CF4869 /* ESCourse.m in Sources */,
+				066CCE781AE95CEA00CF4869 /* ESStudent.m in Sources */,
 				06A9E2F71AE5A4BD00806F3E /* NSNumber+Random.m in Sources */,
-				062574BB1AE3B56300040BE4 /* ESDatabaseDataCache.m in Sources */,
+				062574BB1AE3B56300040BE4 /* ESDataCache.m in Sources */,
 				06B4D0401AE27D7800BA95DF /* ESSimulatedAnnealingMethodology.m in Sources */,
 				06B4D03F1AE26B6900BA95DF /* ESSchedule.m in Sources */,
-				06FBA6B81ADADF5700646B8D /* Model.xcdatamodeld in Sources */,
 				06FBA6BA1ADAECA600646B8D /* ESCoursesFileParserTests.m in Sources */,
-				06FBA6AD1ADADE7600646B8D /* _ESCourse.m in Sources */,
-				06FBA6AF1ADADE7600646B8D /* _ESStudent.m in Sources */,
-				06FBA6B11ADADE7600646B8D /* ESCourse.m in Sources */,
-				06FBA6B31ADADE7600646B8D /* ESStudent.m in Sources */,
 				06FBA6B51ADADE7600646B8D /* ESCoursesFileParser.m in Sources */,
 				064003231AE6D3C9008F7DD3 /* ESStudentTests.m in Sources */,
 			);
@@ -680,19 +643,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		06FBA6981ADAD44B00646B8D /* Model.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				06FBA6991ADAD44B00646B8D /* Model.xcdatamodel */,
-			);
-			currentVersion = 06FBA6991ADAD44B00646B8D /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 06570E531ADAD17B00E10AEA /* Project object */;
 }

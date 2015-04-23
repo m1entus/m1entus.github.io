@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
-#import <CoreData+MagicalRecord.h>
 #import "ESCoursesFileParser.h"
 #import "ESCourse.h"
 
@@ -19,23 +18,10 @@
 
 @implementation ESCoursesFileParserTests
 
-- (void)setUp {
-    [super setUp];
-
-    [MagicalRecord setDefaultModelFromClass:[self class]];
-    [MagicalRecord setupCoreDataStackWithInMemoryStore];
-}
-
-- (void)tearDown {
-    [MagicalRecord cleanUp];
-    [super tearDown];
-}
 - (void)testParsingData {
-    XCTAssertEqual([ESCourse MR_countOfEntities], 0);
-
-    [ESCoursesFileParser parseSynchronouslyFileAtPath:[[NSBundle bundleForClass:[self class]] pathForResource:@"small5-stu" ofType:@"txt"] toContext:[NSManagedObjectContext MR_defaultContext]];
-
-    XCTAssertEqual([ESCourse MR_countOfEntities], 80);
+    [ESCoursesFileParser parseSynchronouslyFileAtPath:[[NSBundle bundleForClass:[self class]] pathForResource:@"small5-stu" ofType:@"txt"] completionHandler:^(NSArray *students, NSArray *courses) {
+        XCTAssertEqual(courses.count, 80);
+    }];
 }
 
 - (void)testParsingSolution {

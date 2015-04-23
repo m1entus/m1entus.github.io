@@ -10,7 +10,7 @@
 #import "ESCoursesFileParser.h"
 #import "ESCourse.h"
 #import "ESSimulatedAnnealingMethodology.h"
-#import "ESDatabaseDataCache.h"
+#import "ESDataCache.h"
 
 @interface AppDelegate ()
 
@@ -20,12 +20,16 @@
 
 - (void)start {
 
-    [[ESDatabaseDataCache sharedInstance] cacheForContext:[NSManagedObjectContext MR_defaultContext]];
-
-    ESSimulatedAnnealingMethodology *sa = [[ESSimulatedAnnealingMethodology alloc] initWithContext:[NSManagedObjectContext MR_defaultContext]];
+    
+    ESSimulatedAnnealingMethodology *sa = [[ESSimulatedAnnealingMethodology alloc] init];
     NSDate *start = [NSDate date];
 
     ESSchedule *schedule = [sa solve];
+
+    if ([[ESDataCache sharedInstance].bestSchedule.quality doubleValue] > [schedule.quality doubleValue]) {
+        [ESDataCache sharedInstance].bestSchedule = schedule;
+        [[ESDataCache sharedInstance] save];
+    }
 
     NSTimeInterval timeInterval = [start timeIntervalSinceNow];
 
@@ -36,22 +40,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [MagicalRecord setupAutoMigratingCoreDataStack];
-
-    if ([ESCourse MR_countOfEntities] <= 0) {
-        [ESCoursesFileParser parseFileAtPath:[[NSBundle mainBundle] pathForResource:@"sta-f-83-stu" ofType:@"txt"] completionHandler:^(NSError *error) {
-            if (error) {
-                [[[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-            } else {
-                [self start];
-            }
-        }];
-    } else {
-        [self start];
-    }
-
-
-    
+    [self start];
     // Override point for customization after application launch.
     return YES;
 }
