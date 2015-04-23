@@ -48,7 +48,7 @@
 - (void)testSolution {
 
     NSString *stringQuality = [NSString stringWithFormat:@"%.6f",[self.schedule.quality doubleValue]];
-    XCTAssertEqual([stringQuality doubleValue], 147.420622);
+    XCTAssertEqual([stringQuality doubleValue], 145.711948);
 }
 
 - (void)testStudentForOneSlotInSchedule {

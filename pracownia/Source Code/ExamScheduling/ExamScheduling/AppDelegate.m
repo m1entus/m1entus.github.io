@@ -21,21 +21,21 @@
 - (void)start {
 
     
-    ESSimulatedAnnealingMethodology *sa = [[ESSimulatedAnnealingMethodology alloc] init];
-    NSDate *start = [NSDate date];
-
-    ESSchedule *schedule = [sa solve];
-
-    if ([[ESDataCache sharedInstance].bestSchedule.quality doubleValue] > [schedule.quality doubleValue]) {
-        [ESDataCache sharedInstance].bestSchedule = schedule;
-        [[ESDataCache sharedInstance] save];
-    }
-
-    NSTimeInterval timeInterval = [start timeIntervalSinceNow];
-
-    NSLog(@"Slots: %@\n", schedule.slotForCourseId);
-    NSLog(@"QUALITY: %@\n",schedule.quality);
-    NSLog(@"Time: %f\n",fabs(timeInterval));
+//    ESSimulatedAnnealingMethodology *sa = [[ESSimulatedAnnealingMethodology alloc] init];
+//    NSDate *start = [NSDate date];
+//
+//    ESSchedule *schedule = [sa solve];
+//
+//    if ([[ESDataCache sharedInstance].bestSchedule.quality doubleValue] < [schedule.quality doubleValue]) {
+//        [ESDataCache sharedInstance].bestSchedule = schedule;
+//        [[ESDataCache sharedInstance] save];
+//    }
+//
+//    NSTimeInterval timeInterval = [start timeIntervalSinceNow];
+//
+//    NSLog(@"Slots: %@\n", schedule.slotForCourseId);
+//    NSLog(@"QUALITY: %@\n",schedule.quality);
+//    NSLog(@"Time: %f\n",fabs(timeInterval));
 }
 
 

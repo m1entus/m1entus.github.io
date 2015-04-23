@@ -75,6 +75,7 @@
 		066CCE721AE9553300CF4869 /* ESCourse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESCourse.m; sourceTree = "<group>"; };
 		066CCE741AE9556E00CF4869 /* ESStudent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESStudent.h; sourceTree = "<group>"; };
 		066CCE751AE9556E00CF4869 /* ESStudent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESStudent.m; sourceTree = "<group>"; };
+		066CCE791AE979CA00CF4869 /* bestSolutionCache.fast */ = {isa = PBXFileReference; lastKnownFileType = file; path = bestSolutionCache.fast; sourceTree = "<group>"; };
 		06FBA6931ADAD33B00646B8D /* small5-stu.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "small5-stu.txt"; sourceTree = "<group>"; };
 		06FBA6941ADAD33B00646B8D /* sta-f-83-stu.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "sta-f-83-stu.txt"; sourceTree = "<group>"; };
 		06FBA6A81ADAD5BF00646B8D /* ESCoursesFileParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCoursesFileParser.h; sourceTree = "<group>"; };
@@ -192,6 +193,7 @@
 		06FBA6921ADAD2B400646B8D /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				066CCE791AE979CA00CF4869 /* bestSolutionCache.fast */,
 				06FBA6931ADAD33B00646B8D /* small5-stu.txt */,
 				06FBA6941ADAD33B00646B8D /* sta-f-83-stu.txt */,
 				0640031F1AE6D2CD008F7DD3 /* sta-f-83-stu-14slot.sol */,
