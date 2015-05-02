@@ -9,7 +9,7 @@
 #import "ESDataCache.h"
 #import "ESCoursesFileParser.h"
 #import <FastCoder.h>
-
+//static NSString *const ESDataCacheDataPath = @"small5-stu";
 static NSString *const ESDataCacheDataPath = @"sta-f-83-stu";
 
 @implementation ESDataCache
@@ -29,7 +29,10 @@ static NSString *const ESDataCacheDataPath = @"sta-f-83-stu";
     static dispatch_once_t once;
     static ESDataCache *instanceOfDatabaseDataCache;
     dispatch_once(&once, ^ {
-        NSString *path = [[self documentsDirectory] stringByAppendingPathComponent:@"sta-f-83-stu.fast"];
+//        NSString *path = [[self documentsDirectory] stringByAppendingPathComponent:@"sta-f-83-stu.fast"];
+//        NSString *path = [[NSBundle mainBundle] pathForResource:@"sta-f-83-stu.fast" ofType:nil];
+        NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.fast",ESDataCacheDataPath] ofType:nil];
+
         NSData *data = [NSData dataWithContentsOfFile:path];
         instanceOfDatabaseDataCache = [FastCoder objectWithData:data];
 

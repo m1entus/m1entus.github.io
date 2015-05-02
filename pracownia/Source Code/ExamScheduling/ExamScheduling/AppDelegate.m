@@ -20,13 +20,12 @@
 
 - (void)start {
 
-    
 //    ESSimulatedAnnealingMethodology *sa = [[ESSimulatedAnnealingMethodology alloc] init];
 //    NSDate *start = [NSDate date];
 //
 //    ESSchedule *schedule = [sa solve];
 //
-//    if ([[ESDataCache sharedInstance].bestSchedule.quality doubleValue] < [schedule.quality doubleValue]) {
+//    if ([[ESDataCache sharedInstance].bestSchedule.quality doubleValue] > [schedule.quality doubleValue]) {
 //        [ESDataCache sharedInstance].bestSchedule = schedule;
 //        [[ESDataCache sharedInstance] save];
 //    }

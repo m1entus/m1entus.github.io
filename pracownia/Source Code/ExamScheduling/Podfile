@@ -1,5 +1,7 @@
 platform :ios, "8.0"
 pod 'FastCoding'
+pod 'MBProgressHUD'
+pod 'UIColor+MLPFlatColors'
 
 target 'ExamSchedulingTests', :exclusive => true do
     pod 'FastCoding'

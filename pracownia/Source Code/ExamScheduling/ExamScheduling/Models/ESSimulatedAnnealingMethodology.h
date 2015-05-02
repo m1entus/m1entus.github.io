@@ -42,6 +42,6 @@
 
 - (ESSchedule *)solve;
 
-- (void)solveWithCompletionHandler:(void(^)(ESSchedule *bestSchedule))completion;
+- (void)solveWithProgress:(void(^)(CGFloat progress))progress completionHandler:(void(^)(ESSchedule *bestSchedule))completion;
 
 @end

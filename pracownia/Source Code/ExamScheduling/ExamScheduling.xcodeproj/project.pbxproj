@@ -28,6 +28,27 @@
 		06A9E2F71AE5A4BD00806F3E /* NSNumber+Random.m in Sources */ = {isa = PBXBuildFile; fileRef = 062574C51AE4035200040BE4 /* NSNumber+Random.m */; };
 		06B4D03F1AE26B6900BA95DF /* ESSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBA6BF1ADAF47A00646B8D /* ESSchedule.m */; };
 		06B4D0401AE27D7800BA95DF /* ESSimulatedAnnealingMethodology.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBA6BC1ADAF1EF00646B8D /* ESSimulatedAnnealingMethodology.m */; };
+		06EA575A1AF4D124001F6FE7 /* ESTimeSlotsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EA57591AF4D124001F6FE7 /* ESTimeSlotsViewController.m */; };
+		06EA575F1AF4D221001F6FE7 /* INSCollectionViewConferenceLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EA575E1AF4D221001F6FE7 /* INSCollectionViewConferenceLayout.m */; };
+		06EA57621AF4D22E001F6FE7 /* NSDate+INSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EA57611AF4D22E001F6FE7 /* NSDate+INSUtils.m */; };
+		06EA57651AF4D23E001F6FE7 /* INSTimerWeakTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EA57641AF4D23E001F6FE7 /* INSTimerWeakTarget.m */; };
+		06EA57731AF4D425001F6FE7 /* INSFloatingHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EA57681AF4D425001F6FE7 /* INSFloatingHeaderView.m */; };
+		06EA57741AF4D425001F6FE7 /* INSFloatingHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06EA57691AF4D425001F6FE7 /* INSFloatingHeaderView.xib */; };
+		06EA57751AF4D425001F6FE7 /* INSGrildlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EA576B1AF4D425001F6FE7 /* INSGrildlineView.m */; };
+		06EA57761AF4D425001F6FE7 /* INSHeaderBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EA576D1AF4D425001F6FE7 /* INSHeaderBackgroundView.m */; };
+		06EA57771AF4D425001F6FE7 /* INSSectionBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EA576F1AF4D425001F6FE7 /* INSSectionBackgroundView.m */; };
+		06EA57781AF4D425001F6FE7 /* INSSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EA57711AF4D425001F6FE7 /* INSSectionHeader.m */; };
+		06EA57791AF4D425001F6FE7 /* INSSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06EA57721AF4D425001F6FE7 /* INSSectionHeader.xib */; };
+		06EA57801AF4D4C6001F6FE7 /* INSCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EA577B1AF4D4C6001F6FE7 /* INSCell.m */; };
+		06EA57811AF4D4C6001F6FE7 /* INSCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06EA577C1AF4D4C6001F6FE7 /* INSCell.xib */; };
+		06EA57821AF4D4C6001F6FE7 /* INSFloatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EA577E1AF4D4C6001F6FE7 /* INSFloatingView.m */; };
+		06EA57831AF4D4C6001F6FE7 /* INSFloatingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06EA577F1AF4D4C6001F6FE7 /* INSFloatingView.xib */; };
+		06EA57871AF4D4FB001F6FE7 /* INSHourHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EA57851AF4D4FB001F6FE7 /* INSHourHeader.m */; };
+		06EA57881AF4D4FB001F6FE7 /* INSHourHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06EA57861AF4D4FB001F6FE7 /* INSHourHeader.xib */; };
+		06EA578B1AF4D885001F6FE7 /* UIColor+LightAndDark.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EA578A1AF4D885001F6FE7 /* UIColor+LightAndDark.m */; };
+		06EA578E1AF4D905001F6FE7 /* ISTopAlignLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EA578D1AF4D905001F6FE7 /* ISTopAlignLabel.m */; };
+		06EA57931AF4DB4F001F6FE7 /* sta-f-83-stu.fast in Resources */ = {isa = PBXBuildFile; fileRef = 06EA57911AF4DB4F001F6FE7 /* sta-f-83-stu.fast */; };
+		06EA57951AF4E1CE001F6FE7 /* small5-stu.fast in Resources */ = {isa = PBXBuildFile; fileRef = 06EA57941AF4E1CE001F6FE7 /* small5-stu.fast */; };
 		06FBA6951ADAD33B00646B8D /* small5-stu.txt in Resources */ = {isa = PBXBuildFile; fileRef = 06FBA6931ADAD33B00646B8D /* small5-stu.txt */; };
 		06FBA6961ADAD33B00646B8D /* sta-f-83-stu.txt in Resources */ = {isa = PBXBuildFile; fileRef = 06FBA6941ADAD33B00646B8D /* sta-f-83-stu.txt */; };
 		06FBA6AA1ADAD5BF00646B8D /* ESCoursesFileParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBA6A91ADAD5BF00646B8D /* ESCoursesFileParser.m */; };
@@ -75,7 +96,41 @@
 		066CCE721AE9553300CF4869 /* ESCourse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESCourse.m; sourceTree = "<group>"; };
 		066CCE741AE9556E00CF4869 /* ESStudent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESStudent.h; sourceTree = "<group>"; };
 		066CCE751AE9556E00CF4869 /* ESStudent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESStudent.m; sourceTree = "<group>"; };
-		066CCE791AE979CA00CF4869 /* bestSolutionCache.fast */ = {isa = PBXFileReference; lastKnownFileType = file; path = bestSolutionCache.fast; sourceTree = "<group>"; };
+		06EA57581AF4D124001F6FE7 /* ESTimeSlotsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESTimeSlotsViewController.h; sourceTree = "<group>"; };
+		06EA57591AF4D124001F6FE7 /* ESTimeSlotsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESTimeSlotsViewController.m; sourceTree = "<group>"; };
+		06EA575D1AF4D221001F6FE7 /* INSCollectionViewConferenceLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSCollectionViewConferenceLayout.h; sourceTree = "<group>"; };
+		06EA575E1AF4D221001F6FE7 /* INSCollectionViewConferenceLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSCollectionViewConferenceLayout.m; sourceTree = "<group>"; };
+		06EA57601AF4D22E001F6FE7 /* NSDate+INSUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+INSUtils.h"; sourceTree = "<group>"; };
+		06EA57611AF4D22E001F6FE7 /* NSDate+INSUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+INSUtils.m"; sourceTree = "<group>"; };
+		06EA57631AF4D23E001F6FE7 /* INSTimerWeakTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSTimerWeakTarget.h; sourceTree = "<group>"; };
+		06EA57641AF4D23E001F6FE7 /* INSTimerWeakTarget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSTimerWeakTarget.m; sourceTree = "<group>"; };
+		06EA57671AF4D425001F6FE7 /* INSFloatingHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSFloatingHeaderView.h; sourceTree = "<group>"; };
+		06EA57681AF4D425001F6FE7 /* INSFloatingHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSFloatingHeaderView.m; sourceTree = "<group>"; };
+		06EA57691AF4D425001F6FE7 /* INSFloatingHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = INSFloatingHeaderView.xib; sourceTree = "<group>"; };
+		06EA576A1AF4D425001F6FE7 /* INSGrildlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSGrildlineView.h; sourceTree = "<group>"; };
+		06EA576B1AF4D425001F6FE7 /* INSGrildlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSGrildlineView.m; sourceTree = "<group>"; };
+		06EA576C1AF4D425001F6FE7 /* INSHeaderBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSHeaderBackgroundView.h; sourceTree = "<group>"; };
+		06EA576D1AF4D425001F6FE7 /* INSHeaderBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSHeaderBackgroundView.m; sourceTree = "<group>"; };
+		06EA576E1AF4D425001F6FE7 /* INSSectionBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSSectionBackgroundView.h; sourceTree = "<group>"; };
+		06EA576F1AF4D425001F6FE7 /* INSSectionBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSSectionBackgroundView.m; sourceTree = "<group>"; };
+		06EA57701AF4D425001F6FE7 /* INSSectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSSectionHeader.h; sourceTree = "<group>"; };
+		06EA57711AF4D425001F6FE7 /* INSSectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSSectionHeader.m; sourceTree = "<group>"; };
+		06EA57721AF4D425001F6FE7 /* INSSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = INSSectionHeader.xib; sourceTree = "<group>"; };
+		06EA577A1AF4D4C6001F6FE7 /* INSCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSCell.h; sourceTree = "<group>"; };
+		06EA577B1AF4D4C6001F6FE7 /* INSCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSCell.m; sourceTree = "<group>"; };
+		06EA577C1AF4D4C6001F6FE7 /* INSCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = INSCell.xib; sourceTree = "<group>"; };
+		06EA577D1AF4D4C6001F6FE7 /* INSFloatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSFloatingView.h; sourceTree = "<group>"; };
+		06EA577E1AF4D4C6001F6FE7 /* INSFloatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSFloatingView.m; sourceTree = "<group>"; };
+		06EA577F1AF4D4C6001F6FE7 /* INSFloatingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = INSFloatingView.xib; sourceTree = "<group>"; };
+		06EA57841AF4D4FB001F6FE7 /* INSHourHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSHourHeader.h; sourceTree = "<group>"; };
+		06EA57851AF4D4FB001F6FE7 /* INSHourHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSHourHeader.m; sourceTree = "<group>"; };
+		06EA57861AF4D4FB001F6FE7 /* INSHourHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = INSHourHeader.xib; sourceTree = "<group>"; };
+		06EA57891AF4D885001F6FE7 /* UIColor+LightAndDark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+LightAndDark.h"; sourceTree = "<group>"; };
+		06EA578A1AF4D885001F6FE7 /* UIColor+LightAndDark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+LightAndDark.m"; sourceTree = "<group>"; };
+		06EA578C1AF4D905001F6FE7 /* ISTopAlignLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISTopAlignLabel.h; sourceTree = "<group>"; };
+		06EA578D1AF4D905001F6FE7 /* ISTopAlignLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISTopAlignLabel.m; sourceTree = "<group>"; };
+		06EA57911AF4DB4F001F6FE7 /* sta-f-83-stu.fast */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sta-f-83-stu.fast"; sourceTree = "<group>"; };
+		06EA57941AF4E1CE001F6FE7 /* small5-stu.fast */ = {isa = PBXFileReference; lastKnownFileType = file; path = "small5-stu.fast"; sourceTree = "<group>"; };
 		06FBA6931ADAD33B00646B8D /* small5-stu.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "small5-stu.txt"; sourceTree = "<group>"; };
 		06FBA6941ADAD33B00646B8D /* sta-f-83-stu.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "sta-f-83-stu.txt"; sourceTree = "<group>"; };
 		06FBA6A81ADAD5BF00646B8D /* ESCoursesFileParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCoursesFileParser.h; sourceTree = "<group>"; };
@@ -147,6 +202,7 @@
 		06570E5D1ADAD17B00E10AEA /* ExamScheduling */ = {
 			isa = PBXGroup;
 			children = (
+				06EA575B1AF4D20D001F6FE7 /* ESTimeSlotsViewController */,
 				06FBA6A71ADAD59F00646B8D /* Models */,
 				06570E621ADAD17B00E10AEA /* AppDelegate.h */,
 				06570E631ADAD17B00E10AEA /* AppDelegate.m */,
@@ -190,10 +246,67 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		06EA575B1AF4D20D001F6FE7 /* ESTimeSlotsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				06EA578C1AF4D905001F6FE7 /* ISTopAlignLabel.h */,
+				06EA578D1AF4D905001F6FE7 /* ISTopAlignLabel.m */,
+				06EA57661AF4D345001F6FE7 /* Cells */,
+				06EA575C1AF4D218001F6FE7 /* Layout */,
+				06EA57581AF4D124001F6FE7 /* ESTimeSlotsViewController.h */,
+				06EA57591AF4D124001F6FE7 /* ESTimeSlotsViewController.m */,
+			);
+			name = ESTimeSlotsViewController;
+			sourceTree = "<group>";
+		};
+		06EA575C1AF4D218001F6FE7 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				06EA57891AF4D885001F6FE7 /* UIColor+LightAndDark.h */,
+				06EA578A1AF4D885001F6FE7 /* UIColor+LightAndDark.m */,
+				06EA57631AF4D23E001F6FE7 /* INSTimerWeakTarget.h */,
+				06EA57641AF4D23E001F6FE7 /* INSTimerWeakTarget.m */,
+				06EA57601AF4D22E001F6FE7 /* NSDate+INSUtils.h */,
+				06EA57611AF4D22E001F6FE7 /* NSDate+INSUtils.m */,
+				06EA575D1AF4D221001F6FE7 /* INSCollectionViewConferenceLayout.h */,
+				06EA575E1AF4D221001F6FE7 /* INSCollectionViewConferenceLayout.m */,
+			);
+			name = Layout;
+			sourceTree = "<group>";
+		};
+		06EA57661AF4D345001F6FE7 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				06EA57841AF4D4FB001F6FE7 /* INSHourHeader.h */,
+				06EA57851AF4D4FB001F6FE7 /* INSHourHeader.m */,
+				06EA57861AF4D4FB001F6FE7 /* INSHourHeader.xib */,
+				06EA577A1AF4D4C6001F6FE7 /* INSCell.h */,
+				06EA577B1AF4D4C6001F6FE7 /* INSCell.m */,
+				06EA577C1AF4D4C6001F6FE7 /* INSCell.xib */,
+				06EA577D1AF4D4C6001F6FE7 /* INSFloatingView.h */,
+				06EA577E1AF4D4C6001F6FE7 /* INSFloatingView.m */,
+				06EA577F1AF4D4C6001F6FE7 /* INSFloatingView.xib */,
+				06EA57671AF4D425001F6FE7 /* INSFloatingHeaderView.h */,
+				06EA57681AF4D425001F6FE7 /* INSFloatingHeaderView.m */,
+				06EA57691AF4D425001F6FE7 /* INSFloatingHeaderView.xib */,
+				06EA576A1AF4D425001F6FE7 /* INSGrildlineView.h */,
+				06EA576B1AF4D425001F6FE7 /* INSGrildlineView.m */,
+				06EA576C1AF4D425001F6FE7 /* INSHeaderBackgroundView.h */,
+				06EA576D1AF4D425001F6FE7 /* INSHeaderBackgroundView.m */,
+				06EA576E1AF4D425001F6FE7 /* INSSectionBackgroundView.h */,
+				06EA576F1AF4D425001F6FE7 /* INSSectionBackgroundView.m */,
+				06EA57701AF4D425001F6FE7 /* INSSectionHeader.h */,
+				06EA57711AF4D425001F6FE7 /* INSSectionHeader.m */,
+				06EA57721AF4D425001F6FE7 /* INSSectionHeader.xib */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		06FBA6921ADAD2B400646B8D /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				066CCE791AE979CA00CF4869 /* bestSolutionCache.fast */,
+				06EA57941AF4E1CE001F6FE7 /* small5-stu.fast */,
+				06EA57911AF4DB4F001F6FE7 /* sta-f-83-stu.fast */,
 				06FBA6931ADAD33B00646B8D /* small5-stu.txt */,
 				06FBA6941ADAD33B00646B8D /* sta-f-83-stu.txt */,
 				0640031F1AE6D2CD008F7DD3 /* sta-f-83-stu-14slot.sol */,
@@ -322,13 +435,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06EA57831AF4D4C6001F6FE7 /* INSFloatingView.xib in Resources */,
+				06EA57811AF4D4C6001F6FE7 /* INSCell.xib in Resources */,
 				064003251AE6D7D0008F7DD3 /* small5-stu-14slot.sol in Resources */,
 				06570E6A1ADAD17B00E10AEA /* Main.storyboard in Resources */,
+				06EA57791AF4D425001F6FE7 /* INSSectionHeader.xib in Resources */,
 				06570E6F1ADAD17B00E10AEA /* LaunchScreen.xib in Resources */,
 				064003201AE6D2CD008F7DD3 /* sta-f-83-stu-14slot.sol in Resources */,
+				06EA57881AF4D4FB001F6FE7 /* INSHourHeader.xib in Resources */,
+				06EA57741AF4D425001F6FE7 /* INSFloatingHeaderView.xib in Resources */,
 				06570E6C1ADAD17B00E10AEA /* Images.xcassets in Resources */,
 				06FBA6951ADAD33B00646B8D /* small5-stu.txt in Resources */,
 				06FBA6961ADAD33B00646B8D /* sta-f-83-stu.txt in Resources */,
+				06EA57951AF4E1CE001F6FE7 /* small5-stu.fast in Resources */,
+				06EA57931AF4DB4F001F6FE7 /* sta-f-83-stu.fast in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,14 +535,28 @@
 			files = (
 				062574C61AE4035200040BE4 /* NSNumber+Random.m in Sources */,
 				066CCE761AE9556E00CF4869 /* ESStudent.m in Sources */,
+				06EA57821AF4D4C6001F6FE7 /* INSFloatingView.m in Sources */,
+				06EA57731AF4D425001F6FE7 /* INSFloatingHeaderView.m in Sources */,
+				06EA57781AF4D425001F6FE7 /* INSSectionHeader.m in Sources */,
 				06FBA6C01ADAF47A00646B8D /* ESSchedule.m in Sources */,
+				06EA575A1AF4D124001F6FE7 /* ESTimeSlotsViewController.m in Sources */,
+				06EA57801AF4D4C6001F6FE7 /* INSCell.m in Sources */,
 				06570E671ADAD17B00E10AEA /* ViewController.m in Sources */,
+				06EA57761AF4D425001F6FE7 /* INSHeaderBackgroundView.m in Sources */,
 				06FBA6BD1ADAF1EF00646B8D /* ESSimulatedAnnealingMethodology.m in Sources */,
 				066CCE731AE9553300CF4869 /* ESCourse.m in Sources */,
 				06FBA6AA1ADAD5BF00646B8D /* ESCoursesFileParser.m in Sources */,
 				06570E641ADAD17B00E10AEA /* AppDelegate.m in Sources */,
+				06EA57771AF4D425001F6FE7 /* INSSectionBackgroundView.m in Sources */,
+				06EA575F1AF4D221001F6FE7 /* INSCollectionViewConferenceLayout.m in Sources */,
 				06570E611ADAD17B00E10AEA /* main.m in Sources */,
+				06EA57751AF4D425001F6FE7 /* INSGrildlineView.m in Sources */,
+				06EA57651AF4D23E001F6FE7 /* INSTimerWeakTarget.m in Sources */,
+				06EA57621AF4D22E001F6FE7 /* NSDate+INSUtils.m in Sources */,
+				06EA578B1AF4D885001F6FE7 /* UIColor+LightAndDark.m in Sources */,
 				062574BA1AE3B35E00040BE4 /* ESDataCache.m in Sources */,
+				06EA578E1AF4D905001F6FE7 /* ISTopAlignLabel.m in Sources */,
+				06EA57871AF4D4FB001F6FE7 /* INSHourHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,8 +694,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ExamScheduling/ExamScheduling-Prefix.pch";
 				INFOPLIST_FILE = ExamScheduling/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -573,8 +709,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ExamScheduling/ExamScheduling-Prefix.pch";
 				INFOPLIST_FILE = ExamScheduling/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

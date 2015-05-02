@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="bui-x3-kMj">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -15,11 +17,117 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qJl-tV-ffi">
+                                <rect key="frame" x="16" y="129" width="568" height="30"/>
+                                <color key="backgroundColor" red="0.4690794647" green="0.8474007845" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="uLc-xr-Uvm"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Generate Schedule">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="generateScheduleButtonTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="3ZS-QI-qrk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9PD-sG-WXz">
+                                <rect key="frame" x="16" y="233" width="568" height="30"/>
+                                <color key="backgroundColor" red="0.4690794647" green="0.8474007845" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="hwL-pc-bAo"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Use Best Schedule with quality:">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="useBestScheduleButtonTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Vfi-ci-9e8"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="9PD-sG-WXz" secondAttribute="trailing" id="3t0-m6-cs4"/>
+                            <constraint firstItem="qJl-tV-ffi" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="65" id="JKw-8a-4tW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="qJl-tV-ffi" secondAttribute="trailing" id="ZXT-SG-f7X"/>
+                            <constraint firstItem="9PD-sG-WXz" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="ao2-OQ-44e"/>
+                            <constraint firstItem="9PD-sG-WXz" firstAttribute="top" secondItem="qJl-tV-ffi" secondAttribute="bottom" constant="74" id="jn8-0z-GUb"/>
+                            <constraint firstItem="qJl-tV-ffi" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="wOe-U2-5uO"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Kd6-7b-ydD"/>
+                    <connections>
+                        <outlet property="bestScheduleButton" destination="9PD-sG-WXz" id="NJH-5b-ftu"/>
+                        <segue destination="jRJ-Il-Ulz" kind="show" identifier="slotView" id="vkF-rW-Imt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="740" y="1166"/>
+        </scene>
+        <!--Time Slots View Controller-->
+        <scene sceneID="NKY-Fi-8DH">
+            <objects>
+                <viewController id="jRJ-Il-Ulz" customClass="ESTimeSlotsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZLU-Gt-HFG"/>
+                        <viewControllerLayoutGuide type="bottom" id="TZD-DV-nhV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AiW-jI-H5n">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ESV-QW-RTe">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2fh-Ve-DjU" customClass="INSCollectionViewConferenceLayout">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="jRJ-Il-Ulz" id="XwC-d4-czv"/>
+                                    <outlet property="delegate" destination="jRJ-Il-Ulz" id="bSN-My-lQP"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ESV-QW-RTe" secondAttribute="trailing" id="Eoa-lf-QHo"/>
+                            <constraint firstItem="ESV-QW-RTe" firstAttribute="top" secondItem="AiW-jI-H5n" secondAttribute="top" id="Zde-rm-szZ"/>
+                            <constraint firstItem="TZD-DV-nhV" firstAttribute="top" secondItem="ESV-QW-RTe" secondAttribute="bottom" id="hql-jR-gP1"/>
+                            <constraint firstItem="ESV-QW-RTe" firstAttribute="leading" secondItem="AiW-jI-H5n" secondAttribute="leading" id="jFM-Rz-6Wa"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="ESV-QW-RTe" id="ciJ-k4-OzR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8f5-Vi-ugd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1110" y="341"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="IbE-XS-Eom">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bui-x3-kMj" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2Om-GQ-7O1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="8LD-GA-x4W"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ydb-nC-hSj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-83" y="303"/>
         </scene>
     </scenes>
 </document>

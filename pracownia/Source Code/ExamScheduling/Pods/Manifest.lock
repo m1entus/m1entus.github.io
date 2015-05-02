@@ -1,13 +1,19 @@
 PODS:
   - FastCoding (3.2.1)
+  - MBProgressHUD (0.9.1)
   - OCMock (3.1.2)
+  - UIColor+MLPFlatColors (1.0)
 
 DEPENDENCIES:
   - FastCoding
+  - MBProgressHUD
   - OCMock
+  - UIColor+MLPFlatColors
 
 SPEC CHECKSUMS:
   FastCoding: ed46c83ba23d048aafa0251972a1e1fc1cfc58ed
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   OCMock: a10ea9f0a6e921651f96f78b6faee95ebc813b92
+  UIColor+MLPFlatColors: 14deb8f28da06ab8918c14231d4ff49ca7cd384a
 
-COCOAPODS: 0.36.3
+COCOAPODS: 0.36.4

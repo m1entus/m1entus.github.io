@@ -22,10 +22,10 @@ double const E = 2.718281828;
 
 - (instancetype)init {
     if (self = [super init]) {
-        _initialTemperature = @(1200.95);
-//        _initialTemperature = @(0.95);
-        _freezingTemperature = @(pow(2, -10));
-//        _freezingTemperature = @(pow(2, -3));
+//        _initialTemperature = @(1200.95);
+        _initialTemperature = @(0.95);
+//        _freezingTemperature = @(pow(2, -10));
+        _freezingTemperature = @(pow(2, -3));
         _phi = @(0.95);
         _perturb = @(0.1);
         _totalNumberOfSlots = @14;
@@ -42,7 +42,7 @@ double const E = 2.718281828;
     return [self.currentTemperature doubleValue] < [self.freezingTemperature doubleValue];
 }
 
-- (ESSchedule *)solve {
+- (ESSchedule *)solveWithProgressBlock:(void(^)(CGFloat progress))progressBlock {
     [self prepareForSolve];
 
     NSInteger numberOfIterations = [ESDataCache sharedInstance].courses.count * [self.totalNumberOfSlots integerValue];
@@ -75,22 +75,32 @@ double const E = 2.718281828;
 
                 if ([schedule.quality doubleValue] < [self.bestSchedule.quality doubleValue]) {
                     self.bestSchedule = schedule;
-
-                    NSLog(@"Slots: %@\n", schedule.slotForCourseId);
-                    NSLog(@"Current Temperature: %@\n",self.currentTemperature);
-                    NSLog(@"QUALITY: %@\n",schedule.quality);
                 }
             }
         }
         self.currentTemperature = @([self.currentTemperature doubleValue] * [self.phi doubleValue]);
+        if (progressBlock) {
+            CGFloat normalized = ([self.currentTemperature doubleValue] - [self.initialTemperature doubleValue]) / ([self.freezingTemperature doubleValue] - [self.initialTemperature doubleValue]);
+            progressBlock(normalized);
+        }
     }
-
+    
     return self.bestSchedule;
 }
 
-- (void)solveWithCompletionHandler:(void(^)(ESSchedule *bestSchedule))completion {
+- (ESSchedule *)solve {
+    return [self solveWithProgressBlock:nil];
+}
+
+- (void)solveWithProgress:(void(^)(CGFloat progress))progressBlock completionHandler:(void(^)(ESSchedule *bestSchedule))completion {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        ESSchedule *schedule = [self solve];
+        ESSchedule *schedule = [self solveWithProgressBlock:^(CGFloat progress) {
+            if (progressBlock) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    progressBlock(progress);
+                });
+            }
+        }];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (completion) {
                 completion(schedule);
