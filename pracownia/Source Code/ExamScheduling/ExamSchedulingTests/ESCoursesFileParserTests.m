@@ -26,7 +26,7 @@
 
 - (void)testParsingSolution {
 
-    NSDictionary *dictionary = [ESCoursesFileParser parseSolutionSlotsFileAtPath:[[NSBundle bundleForClass:[self class]] pathForResource:@"14slotsSolution" ofType:@"txt"]];
+    NSDictionary *dictionary = [ESCoursesFileParser parseSolutionSlotsFileAtPath:[[NSBundle bundleForClass:[self class]] pathForResource:@"sta-f-83-stu-14slot" ofType:@"sol"]];
     XCTAssertEqual(dictionary.allKeys.count, 139);
 }
 

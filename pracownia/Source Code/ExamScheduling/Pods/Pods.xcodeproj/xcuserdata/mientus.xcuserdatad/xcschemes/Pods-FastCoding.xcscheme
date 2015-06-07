@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0510"
+   LastUpgradeVersion = "0640"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4891D0640711EC98AF79D00A"
+               BlueprintIdentifier = "AB993E99FF39F1C376AF88D8"
                BuildableName = "libPods-FastCoding.a"
                BlueprintName = "Pods-FastCoding"
                ReferencedContainer = "container:Pods.xcodeproj">

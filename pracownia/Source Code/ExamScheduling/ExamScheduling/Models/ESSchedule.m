@@ -20,7 +20,7 @@ CGFloat const ESSchedulePenaltyCounterConsecutiveExams[5] = {16, 8, 4, 2, 1};
 @interface ESSchedule ()
 @property (nonatomic, strong, readwrite) NSNumber *quality;
 @property (nonatomic, strong) NSNumber *totalNumberOfSlots;
-
+@property (nonatomic, strong) ESDataCache *cache;
 @property (nonatomic, strong) NSMutableDictionary *slotForCourseId; //<NSString, NSNumber>
 @end
 
@@ -34,7 +34,7 @@ CGFloat const ESSchedulePenaltyCounterConsecutiveExams[5] = {16, 8, 4, 2, 1};
         NSNumber *currentBestScheduleQuality = [self.dataSource currentBestScheduleQualityForSchedule:self];
         double currentBestScheduleQualityDoubleValue = [currentBestScheduleQuality doubleValue];
 
-        NSArray *students = [ESDataCache sharedInstance].students;
+        NSArray *students = self.cache.students;
 
         NSLock *lock = [[NSLock alloc] init];
 
@@ -62,17 +62,19 @@ CGFloat const ESSchedulePenaltyCounterConsecutiveExams[5] = {16, 8, 4, 2, 1};
     return _quality;
 }
 
-+ (instancetype)randomScheduleWithTotalNumberOfSlots:(NSNumber *)numberOfSlots {
-    ESSchedule *schedule = [[self alloc] initWithTotalNumberOfSlots:numberOfSlots];
++ (instancetype)randomScheduleWithTotalNumberOfSlots:(NSNumber *)numberOfSlots cache:(ESDataCache *)cache {
+    ESSchedule *schedule = [[self alloc] initWithTotalNumberOfSlots:numberOfSlots cache:cache];
     [schedule generateSchedule];
 
     return schedule;
 }
 
-- (instancetype)initWithTotalNumberOfSlots:(NSNumber *)numberOfSlots {
+- (instancetype)initWithTotalNumberOfSlots:(NSNumber *)numberOfSlots cache:(ESDataCache *)cache {
     if (self = [super init]) {
         NSParameterAssert(numberOfSlots);
-
+        NSParameterAssert(cache);
+        
+        self.cache = cache;
         _totalNumberOfSlots = numberOfSlots;
         _slotForCourseId = [NSMutableDictionary dictionary];
     }
@@ -83,7 +85,7 @@ CGFloat const ESSchedulePenaltyCounterConsecutiveExams[5] = {16, 8, 4, 2, 1};
 #pragma mark - Private
 
 - (void)generateSchedule {
-    NSArray *results = [ESDataCache sharedInstance].courses;
+    NSArray *results = self.cache.courses;
     [results enumerateObjectsUsingBlock:^(ESCourse *obj, NSUInteger idx, BOOL *stop) {
         NSInteger randomSlot = arc4random()%[self.totalNumberOfSlots integerValue];
         [self insertCourse:obj toSlot:@(randomSlot)];
@@ -113,7 +115,7 @@ CGFloat const ESSchedulePenaltyCounterConsecutiveExams[5] = {16, 8, 4, 2, 1};
 #pragma mark - NSCopying
 
 - (id)copyWithZone:(NSZone *)zone {
-    ESSchedule *schedule = [[ESSchedule alloc] initWithTotalNumberOfSlots:[self.totalNumberOfSlots copyWithZone:zone]];
+    ESSchedule *schedule = [[ESSchedule alloc] initWithTotalNumberOfSlots:[self.totalNumberOfSlots copyWithZone:zone] cache:self.cache];
 
     schedule.slotForCourseId = [self.slotForCourseId mutableCopyWithZone:zone];
 

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ESSchedule.h"
+#import "ESDataCache.h"
 
 @interface ESSimulatedAnnealingMethodology : NSObject
 
@@ -38,7 +39,7 @@
 
 @property (nonatomic, readonly) ESSchedule *bestSchedule;
 
-- (instancetype)init;
+- (instancetype)initWithDataCache:(ESDataCache *)cache;
 
 - (ESSchedule *)solve;
 

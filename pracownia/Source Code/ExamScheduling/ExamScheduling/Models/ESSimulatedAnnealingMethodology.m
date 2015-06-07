@@ -16,12 +16,14 @@ double const E = 2.718281828;
 @interface ESSimulatedAnnealingMethodology () <ESScheduleDataSource>
 @property (nonatomic, readwrite, strong) ESSchedule *bestSchedule;
 @property (nonatomic, strong) NSNumber *currentTemperature;
+@property (nonatomic, strong) ESDataCache *cache;
 @end
 
 @implementation ESSimulatedAnnealingMethodology
 
-- (instancetype)init {
+- (instancetype)initWithDataCache:(ESDataCache *)cache {
     if (self = [super init]) {
+        self.cache = cache;
 //        _initialTemperature = @(1200.95);
         _initialTemperature = @(0.95);
 //        _freezingTemperature = @(pow(2, -10));
@@ -34,7 +36,8 @@ double const E = 2.718281828;
 }
 
 - (void)prepareForSolve {
-    self.bestSchedule = [ESSchedule randomScheduleWithTotalNumberOfSlots:self.totalNumberOfSlots];
+    NSParameterAssert(self.cache);
+    self.bestSchedule = [ESSchedule randomScheduleWithTotalNumberOfSlots:self.totalNumberOfSlots cache:self.cache];
     self.currentTemperature = self.initialTemperature;
 }
 
@@ -45,7 +48,9 @@ double const E = 2.718281828;
 - (ESSchedule *)solveWithProgressBlock:(void(^)(CGFloat progress))progressBlock {
     [self prepareForSolve];
 
-    NSInteger numberOfIterations = [ESDataCache sharedInstance].courses.count * [self.totalNumberOfSlots integerValue];
+    NSParameterAssert(self.cache);
+
+    NSInteger numberOfIterations = self.cache.courses.count * [self.totalNumberOfSlots integerValue];
 
     while (![self shouldStopSolver]) {
         ESSchedule *schedule = self.bestSchedule;
@@ -53,9 +58,9 @@ double const E = 2.718281828;
             @autoreleasepool {
                 ESSchedule *perturbed = [schedule copy];
                 perturbed.dataSource = self;
-                NSInteger numberOfChangesToMake = arc4random() % (NSInteger)(([ESDataCache sharedInstance].courses.count * [self.perturb doubleValue]) + 1);
+                NSInteger numberOfChangesToMake = arc4random() % (NSInteger)((self.cache.courses.count * [self.perturb doubleValue]) + 1);
                 for (NSInteger i = 0; i < numberOfChangesToMake; i++) {
-                    NSArray *courses = [ESDataCache sharedInstance].courses;
+                    NSArray *courses = self.cache.courses;
                     ESCourse *randomCourse = courses[(NSInteger)arc4random() % courses.count];
                     NSInteger randomSlot = arc4random()%[self.totalNumberOfSlots integerValue];
                     [perturbed reassignCourse:randomCourse toSlot:@(randomSlot)];

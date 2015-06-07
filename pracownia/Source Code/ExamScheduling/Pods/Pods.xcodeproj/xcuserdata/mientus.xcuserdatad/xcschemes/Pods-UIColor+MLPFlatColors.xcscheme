@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0510"
+   LastUpgradeVersion = "0640"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E472B22EF5DAA237290343FF"
+               BlueprintIdentifier = "7E3EE0A9D882B156013E9052"
                BuildableName = "libPods-UIColor+MLPFlatColors.a"
                BlueprintName = "Pods-UIColor+MLPFlatColors"
                ReferencedContainer = "container:Pods.xcodeproj">
