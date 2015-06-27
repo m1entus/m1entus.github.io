@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *bestScheduleButton;
 @property (nonatomic, strong) ESSchedule *schedule;
 @property (nonatomic, strong) ESDataCache *cache;
+@property (nonatomic, strong) ESDataCache *cacheForDownloadedFile;
 @property (nonatomic, strong) NSURL *lastEneteredURL;
 @end
 
@@ -25,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.cache = [[ESDataCache alloc] initWithLocalFileDataName:ESDataCacheTestDataPath];
+    self.cache = [[ESDataCache alloc] initWithLocalFileDataName:ESDataCacheStanfordDataPath];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -43,9 +44,18 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    ESTimeSlotsViewController *viewController = segue.destinationViewController;
-    viewController.schedule = self.schedule;
-    viewController.cache = self.cache;
+    
+    if ([segue.identifier isEqualToString:@"slotViewFromURL"]) {
+        ESTimeSlotsViewController *viewController = segue.destinationViewController;
+        viewController.schedule = self.schedule;
+        viewController.cache = self.cacheForDownloadedFile;
+        
+    } else {
+        ESTimeSlotsViewController *viewController = segue.destinationViewController;
+        viewController.schedule = self.schedule;
+        viewController.cache = self.cache;
+    }
+    
 }
 
 - (IBAction)generateScheduleFromURL:(id)sender {
@@ -113,9 +123,9 @@
             cache.bestSchedule = bestSchedule;
             [cache save];
         }
-
+        self.cacheForDownloadedFile = cache;
         self.schedule = bestSchedule;
-        [self performSegueWithIdentifier:@"slotView" sender:nil];
+        [self performSegueWithIdentifier:@"slotViewFromURL" sender:nil];
     }];
 }
 
