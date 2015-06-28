@@ -60,6 +60,7 @@
 		06FBA6C01ADAF47A00646B8D /* ESSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBA6BF1ADAF47A00646B8D /* ESSchedule.m */; };
 		4ECDDCC9A291E89258C77A01 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 85C2C0B1459FA8F9F1DDA0F5 /* libPods.a */; };
 		5B4CC7AB2BEFC415B2853FCF /* libPods-ExamSchedulingTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D403F4AD8CE6F636A1595B6 /* libPods-ExamSchedulingTests.a */; };
+		643C94511B4012B800FC6193 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 643C94501B4012B800FC6193 /* SettingsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,6 +145,8 @@
 		0D403F4AD8CE6F636A1595B6 /* libPods-ExamSchedulingTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ExamSchedulingTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1222FE351D0E0F4C16857B2D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		624BB43F4F5E4E5487024752 /* Pods-ExamSchedulingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExamSchedulingTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ExamSchedulingTests/Pods-ExamSchedulingTests.debug.xcconfig"; sourceTree = "<group>"; };
+		643C944F1B4012B800FC6193 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		643C94501B4012B800FC6193 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		85C2C0B1459FA8F9F1DDA0F5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1E652718F7F1E3C838C0521 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		D2382AE0865D2C061DCDF06C /* Pods-ExamSchedulingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExamSchedulingTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExamSchedulingTests/Pods-ExamSchedulingTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -214,6 +217,8 @@
 				06570E5E1ADAD17B00E10AEA /* Supporting Files */,
 				062574C41AE4035200040BE4 /* NSNumber+Random.h */,
 				062574C51AE4035200040BE4 /* NSNumber+Random.m */,
+				643C944F1B4012B800FC6193 /* SettingsViewController.h */,
+				643C94501B4012B800FC6193 /* SettingsViewController.m */,
 			);
 			path = ExamScheduling;
 			sourceTree = "<group>";
@@ -555,6 +560,7 @@
 				06EA57621AF4D22E001F6FE7 /* NSDate+INSUtils.m in Sources */,
 				06EA578B1AF4D885001F6FE7 /* UIColor+LightAndDark.m in Sources */,
 				062574BA1AE3B35E00040BE4 /* ESDataCache.m in Sources */,
+				643C94511B4012B800FC6193 /* SettingsViewController.m in Sources */,
 				06EA578E1AF4D905001F6FE7 /* ISTopAlignLabel.m in Sources */,
 				06EA57871AF4D4FB001F6FE7 /* INSHourHeader.m in Sources */,
 			);

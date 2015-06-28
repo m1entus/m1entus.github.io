@@ -75,7 +75,15 @@
                             <constraint firstItem="qJl-tV-ffi" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="wOe-U2-5uO"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Kd6-7b-ydD"/>
+                    <navigationItem key="navigationItem" id="Kd6-7b-ydD">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="QQf-64-duY">
+                            <connections>
+                                <segue destination="Slv-9u-g67" kind="popoverPresentation" identifier="settings" popoverAnchorBarButtonItem="QQf-64-duY" id="T7i-o0-Fbh">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="bestScheduleButton" destination="9PD-sG-WXz" id="NJH-5b-ftu"/>
                         <segue destination="jRJ-Il-Ulz" kind="show" identifier="slotView" id="vkF-rW-Imt"/>
@@ -85,6 +93,89 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="740" y="1166"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="SgL-Km-DdV">
+            <objects>
+                <viewController id="qX8-9s-Zfo" customClass="SettingsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lTS-ow-laq"/>
+                        <viewControllerLayoutGuide type="bottom" id="hpg-8W-ufi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kXn-1F-RMH">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bep-Sc-uLW">
+                                <rect key="frame" x="16" y="122" width="568" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="DDi-hM-1vb"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="0.95"/>
+                                    <segment title="100"/>
+                                    <segment title="250"/>
+                                    <segment title="500"/>
+                                    <segment title="1000"/>
+                                </segments>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Initial Temperature °C" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QwO-b1-6m1">
+                                <rect key="frame" x="16" y="84" width="568" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="q4X-TN-OQa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Freezing Temperature °C" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Xv-Dw-zLI">
+                                <rect key="frame" x="16" y="179" width="568" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="0x4-HP-w9t"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ls1-XD-Eif">
+                                <rect key="frame" x="16" y="229" width="568" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="RS5-cc-OHN"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="1/8"/>
+                                    <segment title="1/32"/>
+                                    <segment title="1/128"/>
+                                    <segment title="1/1024"/>
+                                </segments>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ls1-XD-Eif" firstAttribute="leading" secondItem="kXn-1F-RMH" secondAttribute="leadingMargin" id="2LO-fX-S0K"/>
+                            <constraint firstItem="bep-Sc-uLW" firstAttribute="top" secondItem="QwO-b1-6m1" secondAttribute="bottom" constant="17" id="2Zi-8y-Vfw"/>
+                            <constraint firstItem="ls1-XD-Eif" firstAttribute="top" secondItem="7Xv-Dw-zLI" secondAttribute="bottom" constant="29" id="3NV-p7-q7v"/>
+                            <constraint firstItem="QwO-b1-6m1" firstAttribute="trailing" secondItem="kXn-1F-RMH" secondAttribute="trailingMargin" id="5J3-5b-xFB"/>
+                            <constraint firstItem="bep-Sc-uLW" firstAttribute="leading" secondItem="kXn-1F-RMH" secondAttribute="leadingMargin" id="8dL-cc-0Z6"/>
+                            <constraint firstItem="7Xv-Dw-zLI" firstAttribute="top" secondItem="bep-Sc-uLW" secondAttribute="bottom" constant="29" id="HW9-a9-iIW"/>
+                            <constraint firstItem="ls1-XD-Eif" firstAttribute="trailing" secondItem="kXn-1F-RMH" secondAttribute="trailingMargin" id="JEa-gY-P0z"/>
+                            <constraint firstItem="bep-Sc-uLW" firstAttribute="trailing" secondItem="kXn-1F-RMH" secondAttribute="trailingMargin" id="QKM-Hl-SHt"/>
+                            <constraint firstItem="QwO-b1-6m1" firstAttribute="top" secondItem="lTS-ow-laq" secondAttribute="bottom" constant="20" id="hqt-gc-XqC"/>
+                            <constraint firstItem="7Xv-Dw-zLI" firstAttribute="trailing" secondItem="kXn-1F-RMH" secondAttribute="trailingMargin" id="kNx-L8-Vay"/>
+                            <constraint firstItem="7Xv-Dw-zLI" firstAttribute="leading" secondItem="kXn-1F-RMH" secondAttribute="leadingMargin" id="vD1-pi-LLB"/>
+                            <constraint firstItem="QwO-b1-6m1" firstAttribute="leading" secondItem="kXn-1F-RMH" secondAttribute="leadingMargin" id="y8b-PS-0K4"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" id="gJK-ZO-6Fb"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="320" height="240"/>
+                    <connections>
+                        <outlet property="freezingTemperatureSegmentedControl" destination="ls1-XD-Eif" id="kxh-Mo-hlW"/>
+                        <outlet property="initialTemperatureSegmentedControl" destination="bep-Sc-uLW" id="bnY-9r-m3K"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PRz-Bh-rf5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2273" y="1133"/>
         </scene>
         <!--Time Slots View Controller-->
         <scene sceneID="NKY-Fi-8DH">
@@ -148,8 +239,26 @@
             </objects>
             <point key="canvasLocation" x="-83" y="303"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="rFH-Pu-mf3">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Slv-9u-g67" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iLR-5g-Grb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="qX8-9s-Zfo" kind="relationship" relationship="rootViewController" id="HhA-jo-5nt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K4X-XH-sBH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1461" y="1133"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="lOu-MI-YiP"/>
+        <segue reference="vkF-rW-Imt"/>
     </inferredMetricsTieBreakers>
 </document>

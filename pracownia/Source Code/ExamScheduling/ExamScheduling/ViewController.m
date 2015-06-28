@@ -12,6 +12,7 @@
 #import <MBProgressHUD.h>
 #import "ESTimeSlotsViewController.h"
 #import "ESCoursesFileParser.h"
+#import "SettingsViewController.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *bestScheduleButton;
@@ -19,6 +20,8 @@
 @property (nonatomic, strong) ESDataCache *cache;
 @property (nonatomic, strong) ESDataCache *cacheForDownloadedFile;
 @property (nonatomic, strong) NSURL *lastEneteredURL;
+@property (nonatomic, strong) NSNumber *initialTemperature;
+@property (nonatomic, strong) NSNumber *freezingTemperature;
 @end
 
 @implementation ViewController
@@ -27,6 +30,8 @@
     [super viewDidLoad];
 
     self.cache = [[ESDataCache alloc] initWithLocalFileDataName:ESDataCacheStanfordDataPath];
+    self.initialTemperature = @(0.95);
+    self.freezingTemperature = @(pow(2, -3));
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -50,10 +55,20 @@
         viewController.schedule = self.schedule;
         viewController.cache = self.cacheForDownloadedFile;
         
-    } else {
+    } else if ([segue.identifier isEqualToString:@"slotView"]) {
         ESTimeSlotsViewController *viewController = segue.destinationViewController;
         viewController.schedule = self.schedule;
         viewController.cache = self.cache;
+    } else if ([segue.identifier isEqualToString:@"settings"]) {
+        UINavigationController *nav = segue.destinationViewController;
+        SettingsViewController *viewController = (id)[nav topViewController];
+        viewController.initialTemperature = self.initialTemperature;
+        viewController.freezingTemperature = self.freezingTemperature;
+        __weak typeof(self) weakSelf = self;
+        viewController.completionBlock = ^(NSNumber *initialTemperature, NSNumber *freezingTemperature) {
+            weakSelf.initialTemperature = initialTemperature;
+            weakSelf.freezingTemperature = freezingTemperature;
+        };
     }
     
 }
@@ -66,7 +81,8 @@
 
     [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.placeholder = @"Enter URL Address";
-        textField.text = [self.lastEneteredURL absoluteString];
+        textField.text = @"https://raw.githubusercontent.com/m1entus/m1entus.github.io/master/pracownia/Source%20Code/ExamScheduling/small5-stu.txt";
+//        textField.text = [self.lastEneteredURL absoluteString];
     }];
 
     UIAlertAction *okAction = [UIAlertAction
@@ -113,6 +129,8 @@
     HUD.labelText = @"0%";
 
     ESSimulatedAnnealingMethodology *sa = [[ESSimulatedAnnealingMethodology alloc] initWithDataCache:cache];
+    sa.initialTemperature = self.initialTemperature;
+    sa.freezingTemperature = self.freezingTemperature;
     [sa solveWithProgress:^(CGFloat progress) {
         HUD.progress = progress;
         HUD.labelText = [NSString stringWithFormat:@"%0.1f%%",progress*100];
