@@ -22,19 +22,23 @@
 
 @implementation ESStudentTests
 
+static ESDataCache *_instanceOfDataCache = nil;
+
 + (void)setUp {
     [super setUp];
 
-    [ESDataCache sharedInstance].mainBundle = [NSBundle bundleForClass:[self class]];
-    [[ESDataCache sharedInstance] parseAndCacheData];
+    _instanceOfDataCache = [[ESDataCache alloc] initWithLocalFileDataName:ESDataCacheStanfordDataPath];
+
+    _instanceOfDataCache.mainBundle = [NSBundle bundleForClass:[self class]];
+    [_instanceOfDataCache parseAndCacheData];
 }
 
 - (void)setUp {
     if (!self.schedule) {
-        self.schedule = [[ESSchedule alloc] initWithTotalNumberOfSlots:@14];
+        self.schedule = [[ESSchedule alloc] initWithTotalNumberOfSlots:@14 cache:_instanceOfDataCache];
         NSDictionary *dictionary = [ESCoursesFileParser parseSolutionSlotsFileAtPath:[[NSBundle bundleForClass:[self class]] pathForResource:@"sta-f-83-stu-14slot" ofType:@"sol"]];
         [dictionary enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *obj, BOOL *stop) {
-            ESCourse *course = [[ESDataCache sharedInstance] courseWithId:key];
+            ESCourse *course = [_instanceOfDataCache courseWithId:key];
             [self.schedule insertCourse:course toSlot:@([obj integerValue])];
         }];
     }

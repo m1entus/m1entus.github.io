@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ESDataCache.h"
 
 @class ESCourse;
 
@@ -20,6 +21,7 @@ extern CGFloat const ESSchedulePenaltyCounterConsecutiveExams[5];
 @end
 
 @interface ESSchedule : NSObject <NSCopying>
+@property (nonatomic, strong, readonly) ESDataCache *cache;
 @property (nonatomic, weak) id <ESScheduleDataSource> dataSource;
 
 @property (nonatomic, readonly, strong) NSMutableDictionary *slotForCourseId;
@@ -29,8 +31,8 @@ extern CGFloat const ESSchedulePenaltyCounterConsecutiveExams[5];
  */
 @property (nonatomic, readonly) NSNumber *quality;
 
-+ (instancetype)randomScheduleWithTotalNumberOfSlots:(NSNumber *)numberOfSlots;
-- (instancetype)initWithTotalNumberOfSlots:(NSNumber *)numberOfSlots;
++ (instancetype)randomScheduleWithTotalNumberOfSlots:(NSNumber *)numberOfSlots cache:(ESDataCache *)cache;
+- (instancetype)initWithTotalNumberOfSlots:(NSNumber *)numberOfSlots cache:(ESDataCache *)cache;
 
 - (void)reassignCourse:(ESCourse *)course toSlot:(NSNumber *)slot;
 

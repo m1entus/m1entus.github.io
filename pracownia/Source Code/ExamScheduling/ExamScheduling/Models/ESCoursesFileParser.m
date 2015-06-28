@@ -16,8 +16,13 @@
 
     NSString *fileContents = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
 
+    [self parseContentOfString:fileContents completionHandler:completionHandler];
+}
+
++ (void)parseContentOfString:(NSString *)fileContents completionHandler:(ESCoursesFileParserCompletionHandler)completionHandler {
+
     NSMutableArray *values = [[fileContents componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]] mutableCopy];
-    
+
     [values removeObject:@""];
 
     NSMutableArray *students = [NSMutableArray arrayWithCapacity:values.count];
@@ -45,6 +50,31 @@
     if (completionHandler) {
         completionHandler([students copy],[coursesDictionary allValues]);
     }
+}
+
++ (void)parseSynchronouslyFileAtURL:(NSURL *)URL completionHandler:(ESCoursesURLParserCompletionHandler)completionHandler {
+    NSData *data = [NSData dataWithContentsOfURL:URL];
+    NSString *stringData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+
+    if (stringData.length > 0) {
+        [self parseContentOfString:stringData completionHandler:^(NSArray *students, NSArray *courses) {
+            if (students.count > 0 && courses.count > 0) {
+                if (completionHandler) {
+                    completionHandler(students,courses,nil);
+                }
+            } else {
+                if (completionHandler) {
+                    completionHandler(nil,nil,[NSError errorWithDomain:@"ESCoursesFileParsesDomain" code:-1 userInfo:@{NSLocalizedDescriptionKey : @"Wrong file or URL"}]);
+                }
+            }
+        }];
+    } else {
+        if (completionHandler) {
+            completionHandler(nil,nil,[NSError errorWithDomain:@"ESCoursesFileParsesDomain" code:-1 userInfo:@{NSLocalizedDescriptionKey : @"Wrong file or URL"}]);
+        }
+    }
+
+
 }
 
 + (void)parseFileAtPath:(NSString *)path completionHandler:(ESCoursesFileParserCompletionHandler)completionHandler {

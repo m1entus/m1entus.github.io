@@ -11,4 +11,5 @@
 
 @interface ESTimeSlotsViewController : UIViewController
 @property (nonatomic, strong) ESSchedule *schedule;
+@property (nonatomic, strong) ESDataCache *cache;
 @end

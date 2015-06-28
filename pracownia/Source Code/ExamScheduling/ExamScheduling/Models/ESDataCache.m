@@ -9,8 +9,14 @@
 #import "ESDataCache.h"
 #import "ESCoursesFileParser.h"
 #import <FastCoder.h>
-//static NSString *const ESDataCacheDataPath = @"small5-stu";
-static NSString *const ESDataCacheDataPath = @"sta-f-83-stu";
+#import "ESSchedule.h"
+
+NSString *const ESDataCacheTestDataPath = @"small5-stu";
+NSString *const ESDataCacheStanfordDataPath = @"sta-f-83-stu";
+
+@interface ESDataCache ()
+@property (nonatomic, strong) NSString *localFileName;
+@end
 
 @implementation ESDataCache
 
@@ -25,27 +31,26 @@ static NSString *const ESDataCacheDataPath = @"sta-f-83-stu";
     return _mainBundle;
 }
 
-+ (ESDataCache *)sharedInstance {
-    static dispatch_once_t once;
-    static ESDataCache *instanceOfDatabaseDataCache;
-    dispatch_once(&once, ^ {
-//        NSString *path = [[self documentsDirectory] stringByAppendingPathComponent:@"sta-f-83-stu.fast"];
-//        NSString *path = [[NSBundle mainBundle] pathForResource:@"sta-f-83-stu.fast" ofType:nil];
-        NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.fast",ESDataCacheDataPath] ofType:nil];
+- (instancetype)initWithLocalFileDataName:(NSString *)localFileName {
+    NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.fast",localFileName] ofType:nil];
 
-        NSData *data = [NSData dataWithContentsOfFile:path];
-        instanceOfDatabaseDataCache = [FastCoder objectWithData:data];
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    ESDataCache *cache = [FastCoder objectWithData:data];
 
-        if (!instanceOfDatabaseDataCache) {
-            instanceOfDatabaseDataCache = [[ESDataCache alloc] init];
-            [instanceOfDatabaseDataCache parseAndCacheData];
+    if (cache) {
+        self = cache;
+    } else {
+        if (self = [super init]) {
+            self.localFileName = localFileName;
+            [self parseAndCacheData];
         }
-    });
-    return instanceOfDatabaseDataCache;
+    }
+
+    return self;
 }
 
 - (void)parseAndCacheData {
-    [ESCoursesFileParser parseSynchronouslyFileAtPath:[self.mainBundle pathForResource:ESDataCacheDataPath ofType:@"txt"] completionHandler:^(NSArray *students, NSArray *courses) {
+    [ESCoursesFileParser parseSynchronouslyFileAtPath:[self.mainBundle pathForResource:self.localFileName ofType:@"txt"] completionHandler:^(NSArray *students, NSArray *courses) {
         self.students = students;
         self.courses = courses;
         if (self.students.count && self.courses.count) {
@@ -64,8 +69,11 @@ static NSString *const ESDataCacheDataPath = @"sta-f-83-stu";
 }
 
 - (void)save {
-    NSString *path = [[[self class] documentsDirectory] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@",ESDataCacheDataPath,@"fast"]];
-    NSData *data = [FastCoder dataWithRootObject:self];
-    [data writeToFile:path atomically:YES];
+    if (self.localFileName) {
+        NSString *path = [[[self class] documentsDirectory] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@",self.localFileName,@"fast"]];
+        NSData *data = [FastCoder dataWithRootObject:self];
+        [data writeToFile:path atomically:YES];
+    }
+
 }
 @end

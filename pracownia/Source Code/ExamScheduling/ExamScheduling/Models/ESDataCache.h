@@ -8,7 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "ESCourse.h"
-#import "ESSchedule.h"
+
+@class ESSchedule;
+
+extern NSString *const ESDataCacheTestDataPath;
+extern NSString *const ESDataCacheStanfordDataPath;
 
 @interface ESDataCache : NSObject
 @property (nonatomic, strong) NSArray *students;
@@ -18,7 +22,7 @@
 
 @property (nonatomic, strong) ESSchedule *bestSchedule;
 
-+ (ESDataCache *)sharedInstance;
+- (instancetype)initWithLocalFileDataName:(NSString *)localFileName;
 
 - (void)parseAndCacheData;
 

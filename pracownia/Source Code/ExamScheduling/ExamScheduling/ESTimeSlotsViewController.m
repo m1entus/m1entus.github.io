@@ -37,13 +37,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSParameterAssert(self.cache);
     // Do any additional setup after loading the view.
     self.colors = [NSMutableDictionary dictionary];
     self.collectionView.directionalLockEnabled = YES;
 
     self.title = [NSString stringWithFormat:@"Schedule quality: %0.4f",[self.schedule.quality doubleValue]];
 
-    self.students = [[ESDataCache sharedInstance].students sortedArrayUsingComparator:^NSComparisonResult(ESStudent *obj1, ESStudent *obj2) {
+    self.students = [self.cache.students sortedArrayUsingComparator:^NSComparisonResult(ESStudent *obj1, ESStudent *obj2) {
         return [obj1.studentId compare:obj2.studentId options:NSNumericSearch];
     }];
 
